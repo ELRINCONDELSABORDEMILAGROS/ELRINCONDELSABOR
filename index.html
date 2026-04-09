@@ -1,124 +1,250 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Rotisería El Rincón del Sabor de Milagros</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Rincón del Sabor de Milagros</title>
 
-  <style>
-    body {margin: 0;font-family: Arial, sans-serif;background-color: #fff7f0;}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    header {background: #d62828;color: white;text-align: center;padding: 25px;}
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
 
-    nav {background: #f77f00;text-align: center;padding: 10px;}
+/* HERO */
+.hero {
+  background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    nav a {color: white;margin: 10px;text-decoration: none;font-weight: bold;}
+.hero-box {
+  background: rgba(0,0,0,0.7);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
 
-    section {padding: 20px;}
+.hero h1 {
+  font-size: 38px;
+}
 
-    h2 {color: #000000;}
+/* BOTON */
+.btn {
+  background: #25d366;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  margin-top: 15px;
+}
 
-    .menu {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 15px;}
+/* ICONOS */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+  background: #1a1a1a;
+  flex-wrap: wrap;
+}
 
-    .item {background: white;padding: 15px;border-radius: 10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);text-align: center;}
+.feature {
+  text-align: center;
+}
 
-    .precio {color: green;font-size: 18px;font-weight: bold;}
+.feature i {
+  font-size: 28px;
+  color: gold;
+}
 
-    .btn {display: inline-block;margin-top: 10px;padding: 10px;background: #25d366;color: white;text-decoration: none;border-radius: 5px;}
+/* MENU */
+.menu {
+  padding: 30px;
+}
 
-    footer {background: #003049;color: white;text-align: center;padding: 15px;}
-  </style>
+.menu h2 {
+  text-align: center;
+  color: gold;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background: #292929;
+}
+
+/* FLYERS */
+.flyers {
+  text-align: center;
+  padding: 30px;
+}
+
+.flyers img {
+  width: 100%;
+  max-width: 350px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+/* MAPA */
+.mapa {
+  padding: 30px;
+  background: #1a1a1a;
+  text-align: center;
+}
+
+/* REDES */
+.redes a {
+  color: white;
+  font-size: 30px;
+  margin: 10px;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  font-size: 28px;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: black;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-  <h1> <img src="logo.jpeg" alt="Logo" style="height:60px; vertical-align: middle;">Rotisería El Rincón del Sabor de Milagros</h1>
-  <p>Comida casera todos los días</p>
-</header>
+<!-- PORTADA -->
+<section class="hero">
+  <div class="hero-box">
+    <h1>🍗 El Rincón del Sabor de Milagros</h1>
+    <p>Comida casera • Delivery • Take Away</p>
+    <a class="btn" href="https://wa.me/5491168049474">Pedir ahora</a>
+  </div>
+</section>
 
-<nav>
-  <a href="#menu">Menú</a>
-  <a href="#contacto">Contacto</a>
-</nav>
+<!-- BENEFICIOS -->
+<section class="features">
+  <div class="feature"><i class="fa-solid fa-check"></i><p>Calidad casera</p></div>
+  <div class="feature"><i class="fa-solid fa-truck"></i><p>Delivery con cargo</p></div>
+  <div class="feature"><i class="fa-solid fa-fire"></i><p>Comida caliente</p></div>
+  <div class="feature"><i class="fa-solid fa-user"></i><p>Atención rápida</p></div>
+</section>
 
-<section id="menu">
+<!-- MENU -->
+<section class="menu">
   <h2>🍽 Nuestro Menú</h2>
 
-  <div class="menu">
+  <div class="grid">
 
-    <div class="item">
-      <h3>🍕 Pizzas Caseras</h3>
-      <p>Varios sabores</p>
-      <p class="precio">Consultar</p>
+    <div class="card">
+      <h3>🍕 Pizzas</h3>
+      <p>Muzzarella, napolitana, jamón y queso</p>
       <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
     </div>
 
-    <div class="item">
-      <h3>🍲 Estofado de carne</h3>
-      <p>Con guarnición</p>
-      <p class="precio">Consultar</p>
-      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
-    </div>
-
-    <div class="item">
-      <h3>🍝 Albóndigas</h3>
-      <p>Con guarnición</p>
-      <p class="precio">Consultar</p>
-      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
-    </div>
-
-    <div class="item">
+    <div class="card">
       <h3>🥟 Empanadas</h3>
-      <p>Carne, pollo, jamón y queso (horno o fritas)</p>
-      <p class="precio">Consultar promos</p>
+      <p>Carne, pollo, jamón y queso</p>
       <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
     </div>
 
-    <div class="item">
-      <h3>🥪 Sándwich de Milanesa XL para 2 Personas </h3>
-      <p>Con Lechuga,tomate,jamon,Queso + papas fritas</p>
-      <p class="precio">Consultar</p>
-      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
-    </div>
-
-    <div class="item">
-      <h3>🍽 Milanesa Napolitana XL </h3>
-      <p>Al plato con guarnición</p>
-      <p class="precio">Consultar</p>
-      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
-    </div>
-
-    <div class="item">
+    <div class="card">
       <h3>🍗 Pollo al horno</h3>
-      <p>1/4 con guarnición</p>
-      <p class="precio">Consultar</p>
+      <p>Con guarnición</p>
       <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
     </div>
 
-    <div class="item">
-      <h3>🔥 PROMOS</h3>
-      <p>Pizzas y empanadas</p>
-      <p class="precio">¡Preguntanos!</p>
+    <div class="card">
+      <h3>🥪 Sándwich de milanesa</h3>
+      <p>XL con papas</p>
       <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
     </div>
 
   </div>
 </section>
 
-<section id="contacto">
-  <h2>📍 Contacto</h2>
-  <p>📍 Dirección: Grahambell 2089 esquina Dean Funes</p>
-  <p>📍 Paso del Rey, Moreno</p>
-  <p>📞 WhatsApp: 11 6804-9474</p>
-  <p>🕒 Horario: Consultar por WhatsApp</p>
+<!-- FLYERS -->
+<section class="flyers">
+  <h2>🔥 Promociones y Bebidas</h2>
+
+  <!-- CAMBIAR POR TUS IMÁGENES -->
+  <img src="flyer-pizzas.jpg">
+  <img src="flyer-bebidas.jpg">
 </section>
 
+<!-- MAPA -->
+<section class="mapa">
+  <h2 style="color:gold;">📍 Ubicación</h2>
+
+  <iframe 
+    src="https://www.google.com/maps?q=Grahambell+2089+Moreno+Buenos+Aires&output=embed"
+    width="100%" 
+    height="300" 
+    style="border:0; border-radius:10px;">
+  </iframe>
+
+  <h2 style="color:gold;">📲 Seguinos</h2>
+
+  <div class="redes">
+    <a href="https://facebook.com/TUPAGINA"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://instagram.com/TUPAGINA"><i class="fa-brands fa-instagram"></i></a>
+  </div>
+
+  <p>Seguinos para ver promociones y novedades</p>
+
+  <h2 style="color:gold;">💳 Medios de pago</h2>
+  <p>Aceptamos efectivo, transferencia y Mercado Pago</p>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Rotisería El Rincón del Sabor de Milagros</p>
+  <p>📍 Grahambell 2089 esquina Dean Funes</p>
+  <p>📞 11 6804-9474</p>
 </footer>
+
+<!-- BOTON WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/5491168049474">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
-```
