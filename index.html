@@ -15,6 +15,7 @@ body {
   color: white;
 }
 
+/* HERO */
 .hero {
   background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
   height: 90vh;
@@ -28,29 +29,31 @@ body {
   padding: 40px;
   border-radius: 15px;
   text-align: center;
+  animation: fadeIn 1.5s ease;
 }
 
-.hero-box img {
-  width: 150px;
-  margin-bottom: 10px;
+.hero h1 {
+  font-size: 38px;
 }
 
+/* BOTON */
 .btn {
   background: #25d366;
-  padding: 10px 15px;
-  border-radius: 5px;
-  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
   text-decoration: none;
+  color: white;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
+/* ICONOS */
 .features {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
+  padding: 30px;
   background: #1a1a1a;
-  padding: 20px;
   flex-wrap: wrap;
 }
 
@@ -58,13 +61,19 @@ body {
   text-align: center;
 }
 
+.feature i {
+  font-size: 28px;
+  color: gold;
+}
+
+/* MENU */
 .menu {
   padding: 30px;
 }
 
 .menu h2 {
-  color: gold;
   text-align: center;
+  color: gold;
 }
 
 .grid {
@@ -75,23 +84,20 @@ body {
 
 .card {
   background: #1c1c1c;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
 }
 
-.card h3 {
-  margin-top: 0;
-  color: #f77f00;
+.card:hover {
+  transform: scale(1.05);
+  background: #292929;
 }
 
-.precio {
-  color: #00ff88;
-  font-weight: bold;
-}
-
+/* FLYERS */
 .flyers {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
 }
 
 .flyers img {
@@ -101,23 +107,47 @@ body {
   border-radius: 10px;
 }
 
-footer {
-  background: black;
+/* MAPA */
+.mapa {
+  padding: 30px;
+  background: #1a1a1a;
   text-align: center;
-  padding: 20px;
 }
 
+/* REDES */
+.redes a {
+  color: white;
+  font-size: 30px;
+  margin: 10px;
+}
+
+/* WHATSAPP */
 .whatsapp {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: #25d366;
+  color: white;
+  font-size: 28px;
   padding: 15px;
   border-radius: 50%;
-  color: white;
-  font-size: 25px;
+  text-decoration: none;
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: black;
 }
 </style>
+
 </head>
 
 <body>
@@ -125,87 +155,93 @@ footer {
 <!-- PORTADA -->
 <section class="hero">
   <div class="hero-box">
-    <img src="https://raw.githubusercontent.com/TUUSUARIO/TUREPO/main/logo.jpeg">
-    <h1>El Rincón del Sabor</h1>
-    <p>Rotisería de Milagros</p>
-    <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
+    <h1>🍗 El Rincón del Sabor de Milagros</h1>
+    <p>Comida casera • Delivery • Take Away</p>
+    <a class="btn" href="https://wa.me/5491168049474">Pedir ahora</a>
   </div>
 </section>
 
 <!-- BENEFICIOS -->
 <section class="features">
-  <div class="feature">✔️ Calidad casera</div>
-  <div class="feature">🚚 Delivery</div>
-  <div class="feature">🔥 Comida caliente</div>
+  <div class="feature"><i class="fa-solid fa-check"></i><p>Calidad casera</p></div>
+  <div class="feature"><i class="fa-solid fa-truck"></i><p>Delivery con cargo</p></div>
+  <div class="feature"><i class="fa-solid fa-fire"></i><p>Comida caliente</p></div>
+  <div class="feature"><i class="fa-solid fa-user"></i><p>Atención rápida</p></div>
 </section>
 
-<!-- PROMOS -->
+<!-- MENU -->
 <section class="menu">
-  <h2>🔥 Promociones</h2>
+  <h2>🍽 Nuestro Menú</h2>
+
   <div class="grid">
 
-    <div class="card"><h3>2 Muzzarella + 1 Napolitana</h3><p class="precio">$36.000</p></div>
-    <div class="card"><h3>1 Muzza + 1 Jamón + 6 Empanadas</h3><p class="precio">$36.000</p></div>
-    <div class="card"><h3>1 Muzza + Napolitana + Jamón</h3><p class="precio">$42.000</p></div>
-    <div class="card"><h3>18 Empanadas</h3><p class="precio">$29.000</p></div>
-    <div class="card"><h3>1 Muzza + 6 Emp + Coca 2.25</h3><p class="precio">$26.000</p></div>
-    <div class="card"><h3>2 Grandes Muzza</h3><p class="precio">$20.000</p></div>
-    <div class="card"><h3>3 Pizzas Muzza</h3><p class="precio">$27.000</p></div>
-    <div class="card"><h3>1 Muzza + Coca 2.25</h3><p class="precio">$15.000</p></div>
-    <div class="card"><h3>Docena Empanadas + Coca</h3><p class="precio">$24.000</p></div>
-    <div class="card"><h3>Docena Empanadas</h3><p class="precio">$19.000</p></div>
-    <div class="card"><h3>2 Napolitanas</h3><p class="precio">$32.000</p></div>
+    <div class="card">
+      <h3>🍕 Pizzas</h3>
+      <p>Muzzarella, napolitana, jamón y queso</p>
+      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
+    </div>
 
-  </div>
-</section>
+    <div class="card">
+      <h3>🥟 Empanadas</h3>
+      <p>Carne, pollo, jamón y queso</p>
+      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
+    </div>
 
-<!-- PIZZAS -->
-<section class="menu">
-  <h2>🍕 Pizzas</h2>
-  <div class="grid">
+    <div class="card">
+      <h3>🍗 Pollo al horno</h3>
+      <p>Con guarnición</p>
+      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
+    </div>
 
-    <div class="card"><h3>Muzzarella</h3><p class="precio">$11.000</p></div>
-    <div class="card"><h3>Muzzarella Doble</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Napolitana</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Rincón del Sabor</h3><p class="precio">$20.000</p></div>
-    <div class="card"><h3>Jamón</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Jamón y Morrón</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Jamón con huevo</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Roquefort</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Roquefort con jamón</h3><p class="precio">$19.000</p></div>
-    <div class="card"><h3>Fugazzetta</h3><p class="precio">$18.000</p></div>
-    <div class="card"><h3>Primavera</h3><p class="precio">$18.000</p></div>
-
-  </div>
-</section>
-
-<!-- COMIDAS -->
-<section class="menu">
-  <h2>🍲 Comidas Caseras</h2>
-  <div class="grid">
-
-    <div class="card"><h3>Estofado con guarnición</h3><p class="precio">Consultar</p></div>
-    <div class="card"><h3>Albóndigas con guarnición</h3><p class="precio">Consultar</p></div>
-    <div class="card"><h3>Guiso carrero (porción)</h3><p class="precio">Consultar</p></div>
-    <div class="card"><h3>Guiso de lentejas (porción)</h3><p class="precio">Consultar</p></div>
+    <div class="card">
+      <h3>🥪 Sándwich de milanesa</h3>
+      <p>XL con papas</p>
+      <a class="btn" href="https://wa.me/5491168049474">Pedir</a>
+    </div>
 
   </div>
 </section>
 
 <!-- FLYERS -->
 <section class="flyers">
-  <h2>📸 Ver menú completo</h2>
+  <h2>🔥 Promociones y Bebidas</h2>
+
+  <!-- CAMBIAR POR TUS IMÁGENES -->
   <img src="flyer-pizzas.jpg">
   <img src="flyer-bebidas.jpg">
+</section>
+
+<!-- MAPA -->
+<section class="mapa">
+  <h2 style="color:gold;">📍 Ubicación</h2>
+
+  <iframe 
+    src="https://www.google.com/maps?q=Grahambell+2089+Moreno+Buenos+Aires&output=embed"
+    width="100%" 
+    height="300" 
+    style="border:0; border-radius:10px;">
+  </iframe>
+
+  <h2 style="color:gold;">📲 Seguinos</h2>
+
+  <div class="redes">
+    <a href="https://facebook.com/TUPAGINA"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://instagram.com/TUPAGINA"><i class="fa-brands fa-instagram"></i></a>
+  </div>
+
+  <p>Seguinos para ver promociones y novedades</p>
+
+  <h2 style="color:gold;">💳 Medios de pago</h2>
+  <p>Aceptamos efectivo, transferencia y Mercado Pago</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <p>📍 Grahambell 2089 esquina Dean Funes</p>
   <p>📞 11 6804-9474</p>
-  <p>💳 Aceptamos Mercado Pago</p>
 </footer>
 
+<!-- BOTON WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/5491168049474">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
