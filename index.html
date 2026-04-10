@@ -57,18 +57,34 @@ body {
   text-align: center;
 }
 
-/* CARRITO */
+/* CARRITO OCULTO */
 .carrito {
   position: fixed;
-  bottom: 0;
+  bottom: -100%;
+  left: 0;
   width: 100%;
   background: orange;
-  padding: 15px;
+  padding: 20px;
   color: black;
+  transition: 0.4s;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-.carrito button {
-  margin: 2px;
+.carrito.activo {
+  bottom: 0;
+}
+
+/* BOTON FLOTANTE */
+#btnCarrito {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 15px;
+  border-radius: 50px;
+  background: orange;
+  border: none;
+  font-weight: bold;
 }
 
 /* FORM */
@@ -173,8 +189,15 @@ input, select {
 <p>💳 Aceptamos Mercado Pago</p>
 </div>
 
+<!-- BOTON CARRITO -->
+<button onclick="toggleCarrito()" id="btnCarrito">
+🛒 <span id="cantidad">0</span> | $<span id="totalBtn">0</span>
+</button>
+
 <!-- CARRITO -->
 <div class="carrito">
+<button class="btn" onclick="toggleCarrito()">Cerrar</button>
+
 <h3>🛒 Pedido</h3>
 
 <div id="lista"></div>
@@ -202,8 +225,15 @@ input, select {
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+<!-- SONIDO -->
+<audio id="sonidoAgregar" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 <script>
 let carrito = [];
+
+function toggleCarrito(){
+  document.querySelector(".carrito").classList.toggle("activo");
+}
 
 function agregar(nombre, precio){
   let item = carrito.find(p => p.nombre === nombre);
@@ -215,6 +245,9 @@ function agregar(nombre, precio){
   }
 
   render();
+
+  document.getElementById("sonidoAgregar").play();
+  document.querySelector(".carrito").classList.add("activo");
 }
 
 function eliminar(nombre){
@@ -239,11 +272,14 @@ function cambiarCantidad(nombre, cambio){
 function render(){
   let lista = document.getElementById("lista");
   let total = 0;
+  let cantidad = 0;
+
   lista.innerHTML = "";
 
   carrito.forEach(p=>{
     let sub = p.precio * p.cantidad;
     total += sub;
+    cantidad += p.cantidad;
 
     lista.innerHTML += `
       ${p.nombre} x${p.cantidad} - $${sub}
@@ -255,6 +291,8 @@ function render(){
   });
 
   document.getElementById("total").innerText = total;
+  document.getElementById("totalBtn").innerText = total;
+  document.getElementById("cantidad").innerText = cantidad;
 }
 
 function enviar(){
