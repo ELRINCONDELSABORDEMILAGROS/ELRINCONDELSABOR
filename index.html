@@ -11,70 +11,56 @@
 body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 
 .hero {
-  background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
-  height:90vh;display:flex;align-items:center;justify-content:center;
+background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
+height:90vh;display:flex;align-items:center;justify-content:center;
 }
 
 .hero-box {
-  background:rgba(0,0,0,0.75);
-  padding:40px;border-radius:20px;text-align:center;
+background:rgba(0,0,0,0.75);
+padding:40px;border-radius:20px;text-align:center;
 }
 
-.categorias {
-  text-align:center;
-  padding:20px;
-}
-
+.categorias {text-align:center;padding:20px;}
 .categorias button {
-  margin:5px;
-  padding:10px 15px;
-  border:none;
-  border-radius:20px;
-  background:#25d366;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
+margin:5px;padding:10px 15px;border:none;border-radius:20px;
+background:#25d366;color:white;font-weight:bold;cursor:pointer;
 }
 
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;padding:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;padding:30px;
 }
 
 .card {
-  background:#1c1c1c;
-  padding:20px;border-radius:15px;text-align:center;
-  box-shadow:0 8px 25px rgba(0,0,0,0.6);
-  transition:0.3s;
+background:#1c1c1c;padding:20px;border-radius:15px;text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.6);transition:0.3s;
 }
-
 .card:hover {transform:scale(1.05);background:#292929;}
 
 .btn {
-  background:linear-gradient(45deg,#25d366,#1ebe5d);
-  padding:10px;border:none;color:white;
-  border-radius:10px;cursor:pointer;margin-top:8px;
+background:linear-gradient(45deg,#25d366,#1ebe5d);
+padding:10px;border:none;color:white;border-radius:10px;
+cursor:pointer;margin-top:8px;
 }
 
 .carrito {
-  position:fixed;bottom:-100%;width:100%;
-  background:#ffb703;padding:20px;color:black;
-  transition:0.4s;max-height:85vh;overflow:auto;
-  border-top-left-radius:25px;border-top-right-radius:25px;
+position:fixed;bottom:-100%;width:100%;
+background:#ffb703;padding:20px;color:black;
+transition:0.4s;max-height:85vh;overflow:auto;
+border-top-left-radius:25px;border-top-right-radius:25px;
 }
-
 .carrito.activo {bottom:0;}
 
 #btnCarrito {
-  position:fixed;bottom:20px;left:20px;
-  background:#ffb703;padding:15px;border:none;
-  border-radius:50px;font-weight:bold;
+position:fixed;bottom:20px;left:20px;
+background:#ffb703;padding:15px;border:none;
+border-radius:50px;font-weight:bold;
 }
 
 input,select {
-  width:100%;padding:12px;margin:6px 0;
-  border-radius:10px;border:none;
+width:100%;padding:12px;margin:6px 0;
+border-radius:10px;border:none;
 }
 
 .mapa {padding:30px;background:#1a1a1a;text-align:center;}
@@ -85,9 +71,9 @@ input,select {
 .footer {text-align:center;padding:20px;background:black;}
 
 .whatsapp {
-  position:fixed;bottom:100px;right:20px;
-  background:#25d366;padding:15px;border-radius:50%;
-  color:white;font-size:28px;text-decoration:none;
+position:fixed;bottom:100px;right:20px;
+background:#25d366;padding:15px;border-radius:50%;
+color:white;font-size:28px;text-decoration:none;
 }
 </style>
 </head>
@@ -115,14 +101,14 @@ input,select {
 <div class="grid">
 
 <div class="card" data-cat="platos">
-<h3>🍲 Estofado de carne con guarnicion</h3>
+<h3>🍲 Estofado de carne</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Estofado de carne + '+g1.value,8000)">Agregar</button>
 </div>
 
 <div class="card" data-cat="platos">
-<h3>🍝 Albóndigas con guarnicion</h3>
+<h3>🍝 Albóndigas</h3>
 <select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Albondigas + '+g2.value,8000)">Agregar</button>
@@ -131,21 +117,19 @@ input,select {
 <div class="card" data-cat="platos"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
 <div class="card" data-cat="platos"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🍽 Milanesa Napolitana XL para 2 personas con papas fritas </h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL para 2 personas con papas fritas',21000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍽 Milanesa napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa XL con papas fritas para 2 personas </h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL con papas fritas para 2 personas',14000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa XL (2 personas)</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
 
-<div class="card" data-cat="otros"><h3>🍔 Hamburguesa</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
+<div class="card" data-cat="otros"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa con papas',6000)">Agregar</button></div>
 
-<div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana  simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',8000)">Agregar</button></div>
- <div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana Napolitana </h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana Napolitana',9000)">Agregar</button></div>
- <div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana rellena de jamon y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana rellena de jamon y queso',9000)">Agregar</button></div>
+<div class="card" data-cat="otros"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
 
 <div class="card" data-cat="pizzas"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🍗 Pollo al horno 1/4 con papas fritas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍗 Pollo con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa para 1 persona </h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona',8000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa',8000)">Agregar</button></div>
 
 </div>
 
@@ -193,7 +177,7 @@ input,select {
 
 <input type="text" id="nombre" placeholder="Nombre">
 <input type="text" id="direccion" placeholder="Dirección">
-<input type="text" id="zona" placeholder="Zona / entre calles">
+<input type="text" id="zona" placeholder="Entre calles / zona">
 
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
@@ -206,10 +190,8 @@ input,select {
 let carrito=[];
 
 function filtrar(cat){
-let items=document.querySelectorAll(".card");
-items.forEach(i=>{
-if(cat==="todos"){i.style.display="block";}
-else{i.style.display=(i.dataset.cat===cat)?"block":"none";}
+document.querySelectorAll(".card").forEach(i=>{
+i.style.display=(cat==="todos"||i.dataset.cat===cat)?"block":"none";
 });
 }
 
@@ -240,15 +222,12 @@ render();
 
 function render(){
 let lista=document.getElementById("lista");
-let total=0;
-let cantidad=0;
-
+let total=0; let cantidad=0;
 lista.innerHTML="";
 
 carrito.forEach(p=>{
 let sub=p.precio*p.cantidad;
-total+=sub;
-cantidad+=p.cantidad;
+total+=sub; cantidad+=p.cantidad;
 
 lista.innerHTML+=`${p.nombre} x${p.cantidad} - $${sub}
 <button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
@@ -271,13 +250,26 @@ let zona=document.getElementById("zona").value.trim();
 let entrega=document.getElementById("entrega").value;
 let pago=document.getElementById("pago").value;
 
-if(nombre===""){alert("Falta nombre");return;}
-if(entrega===""){alert("Elegí entrega");return;}
-if(pago===""){alert("Elegí pago");return;}
-if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
-if(entrega==="Delivery" && zona===""){alert("Falta zona");return;}
+if(!nombre||!entrega||!pago){alert("Completá los datos");return;}
+if(entrega==="Delivery" && (!direccion||!zona)){alert("Falta dirección/zona");return;}
 
-let texto="Pedido desde la web";
+let total=0;
+let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer un pedido:\n\n🧾 TICKET\n`;
+
+carrito.forEach(p=>{
+let sub=p.precio*p.cantidad;
+total+=sub;
+texto+=`🍽 ${p.nombre} x${p.cantidad} - $${sub}\n`;
+});
+
+texto+=`\n👤 ${nombre}\n📦 ${entrega}\n`;
+
+if(entrega==="Delivery"){
+texto+=`📍 ${direccion}\n📌 ${zona}\n🚚 Delivery aprox\n`;
+}
+
+texto+=`💳 ${pago}\n💰 Total estimado: $${total}\n⚠️ Pedido automático`;
+
 let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
 window.open(url);
 }
