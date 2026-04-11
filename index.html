@@ -30,7 +30,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 
 <section class="hero">
 <div class="hero-box">
-<h1>Rotiseria El Rincón del Sabor de Milagros</h1>
+<h1>🍗 El Rincón del Sabor de Milagros</h1>
 <p>Comida casera • Delivery • Take Away</p>
 </div>
 </section>
@@ -38,7 +38,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <div class="grid">
 
 <div class="card">
-<h3>🍲 Estofado de carne con guarnición</h3>
+<h3>🍲 Estofado con guarnición</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
@@ -54,7 +54,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <div class="card"><h3>🍲 Guiso de lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
 <div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card"><h3>🍽 Milanesa Napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa Napolitana XL',21000)">Agregar</button></div>
+<div class="card"><h3>🍽 Milanesa napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
 
 <div class="card"><h3>🥪 Sandwich milanesa XL + papas</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
 
@@ -68,7 +68,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 
 <div class="card"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
 
-<div class="card"><h3>🥪 Sandwich milanesa carne (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
+<div class="card"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
 
 </div>
 
@@ -113,7 +113,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 
 <input type="text" id="nombre" placeholder="Nombre">
 <input type="text" id="direccion" placeholder="Dirección">
-<input type="text" id="zona" placeholder="Zona">
+<input type="text" id="zona" placeholder="Zona / entre calles">
 
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
@@ -182,15 +182,61 @@ if(nombre===""){alert("Falta nombre");return;}
 if(entrega===""){alert("Elegí entrega");return;}
 if(pago===""){alert("Elegí pago");return;}
 if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
+if(entrega==="Delivery" && zona===""){alert("Falta zona o entre calles");return;}
 
-let texto="🧾 TICKET DE PEDIDO\n";
-texto+="Rotisería El Rincón del Sabor\n\n";
+let pedidoID=Math.floor(Math.random()*9000)+1000;
+let ahora=new Date();
+let total=0;
+
+let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer un pedido.
+
+🧾 Pedido automático
+━━━━━━━━━━━━━━━
+🆔 Pedido #${pedidoID}
+📅 ${ahora.toLocaleDateString()} ⏰ ${ahora.toLocaleTimeString()}
+━━━━━━━━━━━━━━━
+
+`;
 
 carrito.forEach(p=>{
-texto+=`${p.nombre} x${p.cantidad}\n`;
+let sub=p.precio*p.cantidad;
+total+=sub;
+texto+=`🍽 ${p.nombre}
+   x${p.cantidad} - $${sub}
+
+`;
 });
 
-texto+=`\nCliente: ${nombre}\nEntrega: ${entrega}\nPago: ${pago}\n`;
+texto+=`━━━━━━━━━━━━━━━
+👤 Cliente: ${nombre}
+📦 Entrega: ${entrega}
+`;
+
+if(entrega==="Delivery"){
+texto+=`📍 Dirección: ${direccion}
+📌 Zona / entre calles: ${zona}
+🚚 Delivery: $1000 a $2000 (según distancia)
+`;
+}else{
+texto+=`🏪 Retira en el local
+`;
+}
+
+texto+=`💳 Pago: ${pago}
+`;
+
+if(pago==="Mercado Pago"){
+texto+=`👉 Solicito alias para pago
+`;
+}
+
+texto+=`
+━━━━━━━━━━━━━━━
+💰 Total estimado: $${total}
+⚠️ Puede variar por delivery
+━━━━━━━━━━━━━━━
+
+⚠️ Pedido automático - No modificar`;
 
 let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
 window.open(url);
