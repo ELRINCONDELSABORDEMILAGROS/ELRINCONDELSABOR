@@ -19,6 +19,8 @@ body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 #btnCarrito {position:fixed;bottom:20px;left:20px;background:orange;padding:15px;border:none;border-radius:50px;font-weight:bold;}
 input,select {width:100%;padding:8px;margin:5px 0;}
 .mapa {padding:30px;text-align:center;background:#1a1a1a;}
+.redes {text-align:center;padding:30px;background:#111;}
+.redes i {font-size:40px;margin:15px;}
 .footer {text-align:center;padding:20px;background:black;}
 .whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
 </style>
@@ -34,10 +36,40 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 </section>
 
 <div class="grid">
-<div class="card"><h3>🍲 Estofado</h3><p>$8000</p><button class="btn" onclick="agregar('Estofado',8000)">Agregar</button></div>
-<div class="card"><h3>🍝 Albóndigas</h3><p>$8000</p><button class="btn" onclick="agregar('Albondigas',8000)">Agregar</button></div>
-<div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
-<div class="card"><h3>🍽 Milanesa napolitana</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
+
+<div class="card">
+<h3>🍲 Estofado con guarnición</h3>
+<select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
+<p>$8000</p>
+<button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
+</div>
+
+<div class="card">
+<h3>🍝 Albóndigas con guarnición</h3>
+<select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
+<p>$8000</p>
+<button class="btn" onclick="agregar('Albondigas + ' + g2.value,8000)">Agregar</button>
+</div>
+
+<div class="card"><h3>🍲 Guiso de lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
+<div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
+
+<div class="card"><h3>🍽 Milanesa napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
+
+<div class="card"><h3>🥪 Sandwich milanesa XL + papas</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
+
+<div class="card"><h3>🍔 Promo hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
+
+<div class="card"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
+<div class="card"><h3>🥔 Tortilla napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla napolitana',9000)">Agregar</button></div>
+<div class="card"><h3>🥔 Tortilla jamón y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla jamon queso',9000)">Agregar</button></div>
+
+<div class="card"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
+
+<div class="card"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
+
+<div class="card"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
+
 </div>
 
 <div class="mapa">
@@ -45,8 +77,15 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300"></iframe>
 </div>
 
+<div class="redes">
+<h2 style="color:gold;">📲 Seguinos</h2>
+<a href="https://facebook.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+<a href="https://instagram.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+</div>
+
 <div class="footer">
 <p>📍 GRAHAMBELL 2089 ESQUINA DEAN FUNES</p>
+<p>PASO DEL REY - MORENO</p>
 <p>📞 1168049474</p>
 </div>
 
@@ -79,93 +118,81 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5491168049474" target="_blank">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
+<a class="whatsapp" href="https://wa.me/5491168049474"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
-let carrito = [];
+let carrito=[];
 
 function toggleCarrito(){
 document.querySelector(".carrito").classList.toggle("activo");
 }
 
-function agregar(nombre, precio){
-let item = carrito.find(p => p.nombre === nombre);
-if(item){ item.cantidad++; }
-else { carrito.push({nombre,precio,cantidad:1}); }
+function agregar(nombre,precio){
+let item=carrito.find(p=>p.nombre===nombre);
+if(item){item.cantidad++;}else{carrito.push({nombre,precio,cantidad:1});}
 render();
 }
 
-function cambiarCantidad(nombre, cambio){
-let item = carrito.find(p => p.nombre === nombre);
+function cambiarCantidad(nombre,cambio){
+let item=carrito.find(p=>p.nombre===nombre);
 if(item){
-item.cantidad += cambio;
-if(item.cantidad <= 0){
-carrito = carrito.filter(p => p.nombre !== nombre);
-}
+item.cantidad+=cambio;
+if(item.cantidad<=0){carrito=carrito.filter(p=>p.nombre!==nombre);}
 }
 render();
 }
 
 function eliminar(nombre){
-carrito = carrito.filter(p => p.nombre !== nombre);
+carrito=carrito.filter(p=>p.nombre!==nombre);
 render();
 }
 
 function render(){
-let lista = document.getElementById("lista");
-let total = 0;
-let cantidad = 0;
-lista.innerHTML = "";
+let lista=document.getElementById("lista");
+let total=0;let cantidad=0;
+lista.innerHTML="";
 
 carrito.forEach(p=>{
-let sub = p.precio * p.cantidad;
-total += sub;
-cantidad += p.cantidad;
+let sub=p.precio*p.cantidad;
+total+=sub;
+cantidad+=p.cantidad;
 
-lista.innerHTML += `
-${p.nombre} x${p.cantidad} - $${sub}
+lista.innerHTML+=`${p.nombre} x${p.cantidad} - $${sub}
 <button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
 <button onclick="cambiarCantidad('${p.nombre}',-1)">➖</button>
-<button onclick="eliminar('${p.nombre}')">❌</button>
-<br>`;
+<button onclick="eliminar('${p.nombre}')">❌</button><br>`;
 });
 
-document.getElementById("total").innerText = total;
-document.getElementById("totalBtn").innerText = total;
-document.getElementById("cantidad").innerText = cantidad;
+document.getElementById("total").innerText=total;
+document.getElementById("totalBtn").innerText=total;
+document.getElementById("cantidad").innerText=cantidad;
 }
 
 function enviar(){
 
-if(carrito.length === 0){
-alert("Agregá productos");
-return;
-}
+if(carrito.length===0){alert("Agregá productos");return;}
 
-let nombre = document.getElementById("nombre").value.trim();
-let direccion = document.getElementById("direccion").value.trim();
-let zona = document.getElementById("zona").value.trim();
-let entrega = document.getElementById("entrega").value;
-let pago = document.getElementById("pago").value;
+let nombre=document.getElementById("nombre").value.trim();
+let direccion=document.getElementById("direccion").value.trim();
+let zona=document.getElementById("zona").value.trim();
+let entrega=document.getElementById("entrega").value;
+let pago=document.getElementById("pago").value;
 
 if(nombre===""){alert("Falta nombre");return;}
 if(entrega===""){alert("Elegí entrega");return;}
 if(pago===""){alert("Elegí pago");return;}
 if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
 
-let texto = "Pedido:%0A";
+let texto="🧾 TICKET DE PEDIDO\n";
+texto+="Rotisería El Rincón del Sabor\n\n";
 
 carrito.forEach(p=>{
-texto += `${p.nombre} x${p.cantidad}%0A`;
+texto+=`${p.nombre} x${p.cantidad}\n`;
 });
 
-texto += `%0ACliente: ${nombre}%0A`;
-texto += `Entrega: ${entrega}%0A`;
-texto += `Pago: ${pago}%0A`;
+texto+=`\nCliente: ${nombre}\nEntrega: ${entrega}\nPago: ${pago}\n`;
 
-let url = "https://wa.me/5491168049474?text=" + encodeURIComponent(texto);
+let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
 window.open(url);
 }
 </script>
