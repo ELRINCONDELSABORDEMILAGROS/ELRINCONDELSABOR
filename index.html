@@ -86,6 +86,33 @@ input, select {
   margin:5px 0;
 }
 
+/* MAPA */
+.mapa {
+  padding:30px;
+  text-align:center;
+  background:#1a1a1a;
+}
+
+/* REDES */
+.redes {
+  text-align:center;
+  padding:30px;
+  background:#111;
+}
+
+.redes i {
+  font-size:40px;
+  margin:15px;
+}
+
+/* FOOTER */
+.footer {
+  text-align:center;
+  padding:20px;
+  background:black;
+}
+
+/* WHATSAPP */
 .whatsapp {
   position:fixed;
   bottom:100px;
@@ -94,20 +121,8 @@ input, select {
   padding:15px;
   border-radius:50%;
   color:white;
-  font-size:22px;
+  font-size:28px;
   text-decoration:none;
-}
-
-/* REDES */
-.redes {
-  text-align:center;
-  padding:30px;
-  background:#1a1a1a;
-}
-
-.redes i {
-  font-size:40px;
-  margin:15px;
 }
 </style>
 </head>
@@ -126,14 +141,14 @@ input, select {
 <div class="grid">
 
 <div class="card">
-<h3>🍲 Estofado con guarnición</h3>
+<h3>🍲 Estofado</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
 </div>
 
 <div class="card">
-<h3>🍝 Albóndigas con guarnición</h3>
+<h3>🍝 Albóndigas</h3>
 <select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Albondigas + ' + g2.value,8000)">Agregar</button>
@@ -142,11 +157,11 @@ input, select {
 <div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
 <div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card"><h3>🍽 Milanesa napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
+<div class="card"><h3>🍽 Milanesa napolitana XL</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
 
 <div class="card"><h3>🥪 Sandwich milanesa XL</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
 
-<div class="card"><h3>🍔 Promo Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa promo',6000)">Agregar</button></div>
+<div class="card"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
 
 <div class="card"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
 <div class="card"><h3>🥔 Tortilla napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla napolitana',9000)">Agregar</button></div>
@@ -158,6 +173,12 @@ input, select {
 
 <div class="card"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
 
+</div>
+
+<!-- MAPA -->
+<div class="mapa">
+<h2 style="color:gold;">📍 Ubicación</h2>
+<iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300" style="border:0;"></iframe>
 </div>
 
 <!-- REDES -->
@@ -173,6 +194,13 @@ input, select {
 </a>
 
 <p>Seguinos para ver promociones 🔥</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<p>📍 GRAHAMBELL 2089 ESQUINA DEAN FUNES</p>
+<p>PASO DEL REY - MORENO</p>
+<p>📞 11 6804-9474</p>
 </div>
 
 <!-- BOTON CARRITO -->
@@ -206,7 +234,10 @@ input, select {
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5491168049474">💬</a>
+<!-- WHATSAPP ICONO -->
+<a class="whatsapp" href="https://wa.me/5491168049474" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <audio id="sonidoAgregar" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
