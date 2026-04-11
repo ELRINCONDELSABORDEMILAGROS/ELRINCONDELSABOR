@@ -11,18 +11,38 @@
 body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 .hero {background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;height:90vh;display:flex;align-items:center;justify-content:center;}
 .hero-box {background:rgba(0,0,0,0.7);padding:40px;border-radius:15px;text-align:center;}
+
 .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:30px;}
+
 .card {background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;}
+
 .btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;margin:3px;}
-.carrito {position:fixed;bottom:-100%;width:100%;background:orange;padding:20px;color:black;transition:0.4s;max-height:80vh;overflow:auto;}
+
+.carrito {position:fixed;bottom:-100%;width:100%;background:#ffb703;padding:20px;color:black;transition:0.4s;max-height:85vh;overflow:auto;}
 .carrito.activo {bottom:0;}
-#btnCarrito {position:fixed;bottom:20px;left:20px;background:orange;padding:15px;border:none;border-radius:50px;font-weight:bold;}
-input,select {width:100%;padding:8px;margin:5px 0;}
-.mapa {padding:30px;text-align:center;background:#1a1a1a;}
+
+#btnCarrito {position:fixed;bottom:20px;left:20px;background:#ffb703;padding:15px;border:none;border-radius:50px;font-weight:bold;}
+
+input,select {width:100%;padding:10px;margin:6px 0;border-radius:6px;border:none;}
+
+.mapa {padding:30px;background:#1a1a1a;text-align:center;}
+
 .redes {text-align:center;padding:30px;background:#111;}
-.redes i {font-size:40px;margin:15px;}
+.redes i {font-size:35px;margin:10px;}
+
 .footer {text-align:center;padding:20px;background:black;}
+
 .whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
+
+.alerta {
+background:red;
+color:white;
+padding:10px;
+text-align:center;
+margin-bottom:10px;
+border-radius:6px;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -30,7 +50,7 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 
 <section class="hero">
 <div class="hero-box">
-<h1> Rotiseria El Rincón del Sabor de Milagros</h1>
+<h1>🍗 El Rincón del Sabor de Milagros</h1>
 <p>Comida casera • Delivery • Take Away</p>
 </div>
 </section>
@@ -38,27 +58,27 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <div class="grid">
 
 <div class="card">
-<h3>🍲 Estofado de carne con guarnición</h3>
+<h3>🍲 Estofado</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
 <p>$8000</p>
-<button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
+<button class="btn" onclick="agregar('Estofado + '+g1.value,8000)">Agregar</button>
 </div>
 
 <div class="card">
-<h3>🍝 Albóndigas con guarnición</h3>
+<h3>🍝 Albóndigas</h3>
 <select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
 <p>$8000</p>
-<button class="btn" onclick="agregar('Albondigas + ' + g2.value,8000)">Agregar</button>
+<button class="btn" onclick="agregar('Albondigas + '+g2.value,8000)">Agregar</button>
 </div>
 
-<div class="card"><h3>🍲 Guiso de lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
+<div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
 <div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card"><h3>🍽 Milanesa Napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa Napolitana XL',21000)">Agregar</button></div>
+<div class="card"><h3>🍽 Milanesa napolitana XL</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
 
-<div class="card"><h3>🥪 Sandwich milanesa XL + papas</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
+<div class="card"><h3>🥪 Sandwich milanesa XL</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
 
-<div class="card"><h3>🍔 Promo hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
+<div class="card"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
 
 <div class="card"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
 <div class="card"><h3>🥔 Tortilla napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla napolitana',9000)">Agregar</button></div>
@@ -94,19 +114,22 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 </button>
 
 <div class="carrito">
+<div class="alerta">⚠️ Pedido automático - NO MODIFICAR</div>
+
 <button class="btn" onclick="toggleCarrito()">Cerrar</button>
-<h3>🛒 Pedido</h3>
+<h3>🛒 Tu pedido</h3>
+
 <div id="lista"></div>
 <p>Total: $<span id="total">0</span></p>
 
 <select id="entrega">
-<option value="">Entrega</option>
+<option value="">Tipo de entrega</option>
 <option>Retiro en local</option>
 <option>Delivery</option>
 </select>
 
 <select id="pago">
-<option value="">Pago</option>
+<option value="">Forma de pago</option>
 <option>Efectivo</option>
 <option>Mercado Pago</option>
 </select>
@@ -118,7 +141,9 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5491168049474"><i class="fa-brands fa-whatsapp"></i></a>
+<a class="whatsapp" href="https://wa.me/5491168049474">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <script>
 let carrito=[];
@@ -149,7 +174,9 @@ render();
 
 function render(){
 let lista=document.getElementById("lista");
-let total=0;let cantidad=0;
+let total=0;
+let cantidad=0;
+
 lista.innerHTML="";
 
 carrito.forEach(p=>{
@@ -157,7 +184,8 @@ let sub=p.precio*p.cantidad;
 total+=sub;
 cantidad+=p.cantidad;
 
-lista.innerHTML+=`${p.nombre} x${p.cantidad} - $${sub}
+lista.innerHTML+=`
+${p.nombre} x${p.cantidad} - $${sub}
 <button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
 <button onclick="cambiarCantidad('${p.nombre}',-1)">➖</button>
 <button onclick="eliminar('${p.nombre}')">❌</button><br>`;
@@ -165,8 +193,7 @@ lista.innerHTML+=`${p.nombre} x${p.cantidad} - $${sub}
 
 document.getElementById("total").innerText=total;
 document.getElementById("totalBtn").innerText=total;
-document.getElementById("cantidad").innerText=cantidad;
-}
+document.getElementById("cantidad").innerText=cantidad;}
 
 function enviar(){
 
@@ -182,15 +209,13 @@ if(nombre===""){alert("Falta nombre");return;}
 if(entrega===""){alert("Elegí entrega");return;}
 if(pago===""){alert("Elegí pago");return;}
 if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
-if(entrega==="Delivery" && zona===""){alert("Falta zona o entre calles");return;}
+if(entrega==="Delivery" && zona===""){alert("Falta zona");return;}
 
 let pedidoID=Math.floor(Math.random()*9000)+1000;
 let ahora=new Date();
 let total=0;
 
-let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer un pedido.
-
-🧾 Pedido automático
+let texto=`🧾 *TICKET DE PEDIDO*
 ━━━━━━━━━━━━━━━
 🆔 Pedido #${pedidoID}
 📅 ${ahora.toLocaleDateString()} ⏰ ${ahora.toLocaleTimeString()}
@@ -198,14 +223,7 @@ let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer u
 
 `;
 
-carrito.forEach(p=>{
-let sub=p.precio*p.cantidad;
-total+=sub;
-texto+=`🍽 ${p.nombre}
-   x${p.cantidad} - $${sub}
-
-`;
-});
+carrito.forEach(p=>{let sub=p.precio*p.cantidad;total+=sub;texto+=`🍽 ${p.nombre}x${p.cantidad} - $${sub}`;});
 
 texto+=`━━━━━━━━━━━━━━━
 👤 Cliente: ${nombre}
@@ -214,21 +232,10 @@ texto+=`━━━━━━━━━━━━━━━
 
 if(entrega==="Delivery"){
 texto+=`📍 Dirección: ${direccion}
-📌 Zona / entre calles: ${zona}
-🚚 Delivery: $1000 a $2000 (según distancia)
-`;
-}else{
-texto+=`🏪 Retira en el local
-`;
-}
-
-texto+=`💳 Pago: ${pago}
-`;
-
-if(pago==="Mercado Pago"){
-texto+=`👉 Solicito alias para pago
-`;
-}
+📌 Zona: ${zona}
+🚚 Delivery aprox: $1000 - $2000`;}else{texto+=`🏪 Retira en el local`;}
+texto+=`💳 Pago: ${pago}`;
+if(pago==="Mercado Pago"){texto+=`👉 Enviar alias para pago`;}
 
 texto+=`
 ━━━━━━━━━━━━━━━
@@ -236,11 +243,11 @@ texto+=`
 ⚠️ Puede variar por delivery
 ━━━━━━━━━━━━━━━
 
-⚠️ Pedido automático - No modificar`;
+⚠️ Pedido automático
+❌ No modificar`;
 
 let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
-window.open(url);
-}
+window.open(url);}
 </script>
 
 </body>
