@@ -9,81 +9,153 @@
 
 <style>
 body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
-.hero {background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;height:90vh;display:flex;align-items:center;justify-content:center;}
-.hero-box {background:rgba(0,0,0,0.7);padding:40px;border-radius:15px;text-align:center;}
 
-.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:30px;}
-.card {background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;}
-.btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;margin:3px;}
+.hero {
+  background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
+  height:90vh;display:flex;align-items:center;justify-content:center;
+}
 
-.carrito {position:fixed;bottom:-100%;width:100%;background:#ffb703;padding:20px;color:black;transition:0.4s;max-height:85vh;overflow:auto;}
+.hero-box {
+  background:rgba(0,0,0,0.75);
+  padding:40px;border-radius:20px;text-align:center;
+}
+
+.categorias {
+  text-align:center;
+  padding:20px;
+}
+
+.categorias button {
+  margin:5px;
+  padding:10px 15px;
+  border:none;
+  border-radius:20px;
+  background:#25d366;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;padding:30px;
+}
+
+.card {
+  background:#1c1c1c;
+  padding:20px;border-radius:15px;text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,0.6);
+  transition:0.3s;
+}
+
+.card:hover {transform:scale(1.05);background:#292929;}
+
+.btn {
+  background:linear-gradient(45deg,#25d366,#1ebe5d);
+  padding:10px;border:none;color:white;
+  border-radius:10px;cursor:pointer;margin-top:8px;
+}
+
+.carrito {
+  position:fixed;bottom:-100%;width:100%;
+  background:#ffb703;padding:20px;color:black;
+  transition:0.4s;max-height:85vh;overflow:auto;
+  border-top-left-radius:25px;border-top-right-radius:25px;
+}
+
 .carrito.activo {bottom:0;}
 
-#btnCarrito {position:fixed;bottom:20px;left:20px;background:#ffb703;padding:15px;border:none;border-radius:50px;font-weight:bold;}
+#btnCarrito {
+  position:fixed;bottom:20px;left:20px;
+  background:#ffb703;padding:15px;border:none;
+  border-radius:50px;font-weight:bold;
+}
 
-input,select {width:100%;padding:10px;margin:6px 0;border-radius:6px;border:none;}
+input,select {
+  width:100%;padding:12px;margin:6px 0;
+  border-radius:10px;border:none;
+}
 
 .mapa {padding:30px;background:#1a1a1a;text-align:center;}
+
 .redes {text-align:center;padding:30px;background:#111;}
-.redes i {font-size:35px;margin:10px;}
+.redes i {font-size:35px;margin:15px;}
 
 .footer {text-align:center;padding:20px;background:black;}
 
-.whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
+.whatsapp {
+  position:fixed;bottom:100px;right:20px;
+  background:#25d366;padding:15px;border-radius:50%;
+  color:white;font-size:28px;text-decoration:none;
+}
 </style>
 </head>
 
 <body>
 
+<!-- SONIDO -->
+<audio id="sonidoAgregar" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 <section class="hero">
 <div class="hero-box">
-<h1>Rotiseria El Rincón del Sabor de Milagros</h1>
+<h1>Rotisería El Rincón del Sabor de Milagros</h1>
 <p>Comida casera • Delivery • Take Away</p>
 </div>
 </section>
 
+<!-- CATEGORIAS -->
+<div class="categorias">
+<button onclick="filtrar('todos')">🍽 Todos</button>
+<button onclick="filtrar('platos')">🍲 Platos</button>
+<button onclick="filtrar('pizzas')">🍕 Pizzas</button>
+<button onclick="filtrar('otros')">🔥 Otros</button>
+</div>
+
 <div class="grid">
 
-<div class="card">
+<div class="card" data-cat="platos">
 <h3>🍲 Estofado de carne con guarnicion</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Estofado de carne + '+g1.value,8000)">Agregar</button>
 </div>
 
-<div class="card">
+<div class="card" data-cat="platos">
 <h3>🍝 Albóndigas con guarnicion</h3>
 <select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
 <p>$8000</p>
 <button class="btn" onclick="agregar('Albondigas + '+g2.value,8000)">Agregar</button>
 </div>
 
-<div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
-<div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card"><h3>🍽 Milanesa Napolitana XL(2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍽 Milanesa Napolitana XL para 2 personas con papas fritas </h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL para 2 personas con papas fritas',21000)">Agregar</button></div>
 
-<div class="card"><h3>🥪 Sandwich milanesa XL(2 personas)</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL para 2 personas',14000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa XL con papas fritas para 2 personas </h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL con papas fritas para 2 personas',14000)">Agregar</button></div>
 
-<div class="card"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
+<div class="card" data-cat="otros"><h3>🍔 Hamburguesa</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
 
-<div class="card"><h3>🥔 Tortilla de papa mediana simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',8000)">Agregar</button></div>
-<div class="card"><h3>🥔 Tortilla de papa mediana napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana napolitana',9000)">Agregar</button></div>
-<div class="card"><h3>🥔 Tortilla de papa mediana jamón y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana jamon queso',9000)">Agregar</button></div>
+<div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana  simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',8000)">Agregar</button></div>
+ <div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana Napolitana </h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana Napolitana',9000)">Agregar</button></div>
+ <div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana rellena de jamon y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana rellena de jamon y queso',9000)">Agregar</button></div>
 
-<div class="card"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
+<div class="card" data-cat="pizzas"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
 
-<div class="card"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍗 Pollo al horno 1/4 con papas fritas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
 
-<div class="card"><h3>🥪 Sandwich milanesa (1 persona) con Papas fritas </h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',8000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa para 1 persona </h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona',8000)">Agregar</button></div>
 
 </div>
 
+<!-- MAPA -->
 <div class="mapa">
 <h2 style="color:gold;">📍 Ubicación</h2>
 <iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300"></iframe>
 </div>
 
+<!-- REDES -->
 <div class="redes">
 <h2 style="color:gold;">📲 Seguinos</h2>
 <a href="https://facebook.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-facebook"></i></a>
@@ -133,11 +205,20 @@ input,select {width:100%;padding:10px;margin:6px 0;border-radius:6px;border:none
 <script>
 let carrito=[];
 
+function filtrar(cat){
+let items=document.querySelectorAll(".card");
+items.forEach(i=>{
+if(cat==="todos"){i.style.display="block";}
+else{i.style.display=(i.dataset.cat===cat)?"block":"none";}
+});
+}
+
 function toggleCarrito(){
 document.querySelector(".carrito").classList.toggle("activo");
 }
 
 function agregar(nombre,precio){
+document.getElementById("sonidoAgregar").play();
 let item=carrito.find(p=>p.nombre===nombre);
 if(item){item.cantidad++;}else{carrito.push({nombre,precio,cantidad:1});}
 render();
@@ -169,8 +250,7 @@ let sub=p.precio*p.cantidad;
 total+=sub;
 cantidad+=p.cantidad;
 
-lista.innerHTML+=`
-${p.nombre} x${p.cantidad} - $${sub}
+lista.innerHTML+=`${p.nombre} x${p.cantidad} - $${sub}
 <button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
 <button onclick="cambiarCantidad('${p.nombre}',-1)">➖</button>
 <button onclick="eliminar('${p.nombre}')">❌</button><br>`;
@@ -197,60 +277,7 @@ if(pago===""){alert("Elegí pago");return;}
 if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
 if(entrega==="Delivery" && zona===""){alert("Falta zona");return;}
 
-let pedidoID=Math.floor(Math.random()*9000)+1000;
-let ahora=new Date();
-let total=0;
-
-let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer un pedido.Este es el detalle:
-
-🧾 TICKET DE PEDIDO
-━━━━━━━━━━━━━━━
-🆔 Pedido #${pedidoID}
-📅 ${ahora.toLocaleDateString()} ⏰ ${ahora.toLocaleTimeString()}
-━━━━━━━━━━━━━━━
-
-`;
-
-carrito.forEach(p=>{
-let sub=p.precio*p.cantidad;
-total+=sub;
-texto+=`🍽 ${p.nombre}
-x${p.cantidad} - $${sub}
-
-`;
-});
-
-texto+=`━━━━━━━━━━━━━━━
-👤 Cliente: ${nombre}
-📦 Entrega: ${entrega}
-`;
-
-if(entrega==="Delivery"){
-texto+=`📍 Dirección: ${direccion}
-📌 Zona: ${zona}
- Delivery aprox: $1000 - $2000
-`;
-}else{
-texto+=`🏪 Retira en el local
-`;
-}
-
-texto+=`💳 Pago: ${pago}
-`;
-
-if(pago==="Mercado Pago"){
-texto+=`👉 Enviar alias para pago
-`;
-}
-
-texto+=`
-━━━━━━━━━━━━━━━
-💰 Total estimado: $${total}
-⚠️ Puede variar por delivery
-━━━━━━━━━━━━━━━
-
-⚠️ Pedido automático de la web`;
-
+let texto="Pedido desde la web";
 let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
 window.open(url);
 }
