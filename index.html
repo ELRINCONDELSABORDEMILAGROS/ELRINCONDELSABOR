@@ -10,110 +10,104 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   background: #0f0f0f;
   color: white;
 }
 
-/* HERO */
 .hero {
   background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
   height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .hero-box {
   background: rgba(0,0,0,0.7);
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
+  padding:40px;
+  border-radius:15px;
+  text-align:center;
 }
 
-/* BOTON */
-.btn {
-  background: #25d366;
-  padding: 10px;
-  border-radius: 6px;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-}
-
-/* GRID */
 .grid {
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px;
-  padding: 30px;
+  gap:20px;
+  padding:30px;
 }
 
 .card {
-  background: #1c1c1c;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
+  background:#1c1c1c;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
 }
 
-/* CARRITO OCULTO */
+.btn {
+  background:#25d366;
+  padding:10px;
+  border:none;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
 .carrito {
   position: fixed;
   bottom: -100%;
-  left: 0;
-  width: 100%;
-  background: orange;
-  padding: 20px;
-  color: black;
-  transition: 0.4s;
-  max-height: 80vh;
-  overflow-y: auto;
+  width:100%;
+  background:orange;
+  padding:20px;
+  color:black;
+  transition:0.4s;
+  max-height:80vh;
+  overflow:auto;
 }
 
 .carrito.activo {
-  bottom: 0;
+  bottom:0;
 }
 
-/* BOTON FLOTANTE */
 #btnCarrito {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  padding: 15px;
-  border-radius: 50px;
-  background: orange;
-  border: none;
-  font-weight: bold;
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:orange;
+  padding:15px;
+  border:none;
+  border-radius:50px;
+  font-weight:bold;
 }
 
-/* FORM */
 input, select {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
+  width:100%;
+  padding:8px;
+  margin:5px 0;
 }
 
-/* MAPA */
-.mapa {
-  padding: 20px;
+.whatsapp {
+  position:fixed;
+  bottom:100px;
+  right:20px;
+  background:#25d366;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  font-size:22px;
+  text-decoration:none;
 }
 
 /* REDES */
-.redes i {
-  font-size: 25px;
-  margin: 10px;
+.redes {
+  text-align:center;
+  padding:30px;
+  background:#1a1a1a;
 }
 
-/* WHATSAPP */
-.whatsapp {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: #25d366;
-  padding: 15px;
-  border-radius: 50%;
-  color: white;
+.redes i {
+  font-size:40px;
+  margin:15px;
 }
 </style>
 </head>
@@ -122,71 +116,63 @@ input, select {
 
 <!-- PORTADA -->
 <section class="hero">
-  <div class="hero-box">
-    <h1>🍗 El Rincón del Sabor de Milagros</h1>
-    <p>Comida casera • Delivery • Take Away</p>
-  </div>
+<div class="hero-box">
+<h1>🍗 El Rincón del Sabor de Milagros</h1>
+<p>Comida casera • Delivery • Take Away</p>
+</div>
 </section>
 
 <!-- MENU -->
 <div class="grid">
 
 <div class="card">
-<h3>🍕 Muzzarella</h3>
-<p>$11000</p>
-<button class="btn" onclick="agregar('Muzzarella',11000)">Agregar</button>
-</div>
-
-<div class="card">
-<h3>🍕 Napolitana</h3>
-<p>$18000</p>
-<button class="btn" onclick="agregar('Napolitana',18000)">Agregar</button>
-</div>
-
-<div class="card">
-<h3>🍕 Jamón y Morrón</h3>
-<p>$18000</p>
-<button class="btn" onclick="agregar('Jamón y Morrón',18000)">Agregar</button>
-</div>
-
-<div class="card">
 <h3>🍲 Estofado con guarnición</h3>
-<p>$9000</p>
-<button class="btn" onclick="agregar('Estofado',9000)">Agregar</button>
+<select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
+<p>$8000</p>
+<button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
 </div>
 
 <div class="card">
 <h3>🍝 Albóndigas con guarnición</h3>
-<p>$8500</p>
-<button class="btn" onclick="agregar('Albondigas',8500)">Agregar</button>
+<select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
+<p>$8000</p>
+<button class="btn" onclick="agregar('Albondigas + ' + g2.value,8000)">Agregar</button>
 </div>
 
-<div class="card">
-<h3>🍲 Guiso carrero</h3>
-<p>$7000</p>
-<button class="btn" onclick="agregar('Guiso carrero',7000)">Agregar</button>
+<div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
+<div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
+
+<div class="card"><h3>🍽 Milanesa napolitana XL (2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
+
+<div class="card"><h3>🥪 Sandwich milanesa XL</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
+
+<div class="card"><h3>🍔 Promo Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa promo',6000)">Agregar</button></div>
+
+<div class="card"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
+<div class="card"><h3>🥔 Tortilla napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla napolitana',9000)">Agregar</button></div>
+<div class="card"><h3>🥔 Tortilla jamón y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla jamon queso',9000)">Agregar</button></div>
+
+<div class="card"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
+
+<div class="card"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
+
+<div class="card"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
+
 </div>
 
-<div class="card">
-<h3>🍲 Guiso de lentejas</h3>
-<p>$7000</p>
-<button class="btn" onclick="agregar('Guiso lentejas',7000)">Agregar</button>
-</div>
-
-</div>
-
-<!-- MAPA -->
-<div class="mapa">
-<h2>📍 Ubicación</h2>
-<iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="250"></iframe>
-
-<h2>📲 Redes</h2>
+<!-- REDES -->
 <div class="redes">
-<i class="fa-brands fa-facebook"></i>
-<i class="fa-brands fa-instagram"></i>
-</div>
+<h2 style="color:gold;">📲 Seguinos</h2>
 
-<p>💳 Aceptamos Mercado Pago</p>
+<a href="https://facebook.com/elrincondelsabordemilagros" target="_blank">
+<i class="fa-brands fa-facebook" style="color:#1877f2;"></i>
+</a>
+
+<a href="https://instagram.com/elrincondelsabordemilagros" target="_blank">
+<i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
+</a>
+
+<p>Seguinos para ver promociones 🔥</p>
 </div>
 
 <!-- BOTON CARRITO -->
@@ -199,14 +185,13 @@ input, select {
 <button class="btn" onclick="toggleCarrito()">Cerrar</button>
 
 <h3>🛒 Pedido</h3>
-
 <div id="lista"></div>
 
 <p>Total: $<span id="total">0</span></p>
 
 <select id="entrega">
-<option value="Retiro en local">Retiro en local</option>
-<option value="Delivery">Delivery (+$1000)</option>
+<option>Retiro en local</option>
+<option>Delivery</option>
 </select>
 
 <select id="pago">
@@ -214,128 +199,112 @@ input, select {
 <option>Mercado Pago</option>
 </select>
 
-<input type="text" id="nombre" placeholder="Nombre (obligatorio)">
-<input type="text" id="direccion" placeholder="Dirección + entre calles">
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="text" id="direccion" placeholder="Dirección">
+<input type="text" id="zona" placeholder="Zona">
 
 <button class="btn" onclick="enviar()">Confirmar pedido</button>
 </div>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/5491168049474">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
+<a class="whatsapp" href="https://wa.me/5491168049474">💬</a>
 
-<!-- SONIDO -->
 <audio id="sonidoAgregar" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
 <script>
 let carrito = [];
 
 function toggleCarrito(){
-  document.querySelector(".carrito").classList.toggle("activo");
+document.querySelector(".carrito").classList.toggle("activo");
 }
 
 function agregar(nombre, precio){
-  let item = carrito.find(p => p.nombre === nombre);
+let item = carrito.find(p => p.nombre === nombre);
+if(item){ item.cantidad++; }
+else { carrito.push({nombre,precio,cantidad:1}); }
 
-  if(item){
-    item.cantidad++;
-  } else {
-    carrito.push({nombre,precio,cantidad:1});
-  }
-
-  render();
-
-  document.getElementById("sonidoAgregar").play();
-  document.querySelector(".carrito").classList.add("activo");
+render();
+document.getElementById("sonidoAgregar").play();
+document.querySelector(".carrito").classList.add("activo");
 }
 
 function eliminar(nombre){
-  carrito = carrito.filter(p => p.nombre !== nombre);
-  render();
+carrito = carrito.filter(p => p.nombre !== nombre);
+render();
 }
 
 function cambiarCantidad(nombre, cambio){
-  let item = carrito.find(p => p.nombre === nombre);
-
-  if(item){
-    item.cantidad += cambio;
-
-    if(item.cantidad <= 0){
-      eliminar(nombre);
-    }
-  }
-
-  render();
+let item = carrito.find(p => p.nombre === nombre);
+if(item){
+item.cantidad += cambio;
+if(item.cantidad <= 0) eliminar(nombre);
+}
+render();
 }
 
 function render(){
-  let lista = document.getElementById("lista");
-  let total = 0;
-  let cantidad = 0;
+let lista = document.getElementById("lista");
+let total = 0;
+let cantidad = 0;
+lista.innerHTML = "";
 
-  lista.innerHTML = "";
+carrito.forEach(p=>{
+let sub = p.precio * p.cantidad;
+total += sub;
+cantidad += p.cantidad;
 
-  carrito.forEach(p=>{
-    let sub = p.precio * p.cantidad;
-    total += sub;
-    cantidad += p.cantidad;
+lista.innerHTML += `
+${p.nombre} x${p.cantidad} - $${sub}
+<button onclick="cambiarCantidad('${p.nombre}',1)">+</button>
+<button onclick="cambiarCantidad('${p.nombre}',-1)">-</button>
+<button onclick="eliminar('${p.nombre}')">❌</button><br>`;
+});
 
-    lista.innerHTML += `
-      ${p.nombre} x${p.cantidad} - $${sub}
-      <button onclick="cambiarCantidad('${p.nombre}',1)">+</button>
-      <button onclick="cambiarCantidad('${p.nombre}',-1)">-</button>
-      <button onclick="eliminar('${p.nombre}')">❌</button>
-      <br>
-    `;
-  });
-
-  document.getElementById("total").innerText = total;
-  document.getElementById("totalBtn").innerText = total;
-  document.getElementById("cantidad").innerText = cantidad;
+document.getElementById("total").innerText = total;
+document.getElementById("totalBtn").innerText = total;
+document.getElementById("cantidad").innerText = cantidad;
 }
 
 function enviar(){
-  let nombre = document.getElementById("nombre").value;
-  let direccion = document.getElementById("direccion").value;
-  let entrega = document.getElementById("entrega").value;
-  let pago = document.getElementById("pago").value;
+let nombre = document.getElementById("nombre").value;
+let direccion = document.getElementById("direccion").value;
+let zona = document.getElementById("zona").value;
+let entrega = document.getElementById("entrega").value;
+let pago = document.getElementById("pago").value;
 
-  if(nombre === ""){
-    alert("Poné tu nombre");
-    return;
-  }
+if(nombre === ""){
+alert("Poné tu nombre");
+return;
+}
 
-  if(entrega === "Delivery" && direccion === ""){
-    alert("Falta dirección");
-    return;
-  }
+let total = 0;
+let texto = "🍗 Pedido Rotisería%0A%0A";
 
-  let total = 0;
-  let texto = "🍗 Pedido Rotisería%0A%0A";
+carrito.forEach(p=>{
+let sub = p.precio * p.cantidad;
+total += sub;
+texto += `- ${p.nombre} x${p.cantidad} ($${sub})%0A`;
+});
 
-  carrito.forEach(p=>{
-    let sub = p.precio * p.cantidad;
-    total += sub;
-    texto += `- ${p.nombre} x${p.cantidad} ($${sub})%0A`;
-  });
+texto += "%0A👤 Nombre: " + nombre + "%0A";
+texto += "📦 Entrega: " + entrega + "%0A";
 
-  if(entrega === "Delivery"){
-    total += 1000;
-    texto += "%0A🚚 Delivery: $1000%0A";
-  }
+if(entrega === "Delivery"){
+texto += "📍 Dirección: " + direccion + "%0A";
+texto += "📌 Zona: " + zona + "%0A";
+texto += "🚚 Delivery: entre $1000 y $2000 (según distancia)%0A";
+} else {
+texto += "🏪 Retira en el local%0A";
+}
 
-  texto += "%0A👤 Nombre: " + nombre + "%0A";
-  texto += "📦 Entrega: " + entrega + "%0A";
-  texto += "📍 Dirección: " + direccion + "%0A";
-  texto += "💳 Pago: " + pago + "%0A";
-  texto += "%0A💰 Total: $" + total;
+texto += "💳 Pago: " + pago + "%0A";
+texto += "%0A💰 Total estimado: $" + total + "%0A";
+texto += "⚠️ El total final puede variar según el delivery%0A";
 
-  if(pago === "Mercado Pago"){
-    texto += "%0A👉 Enviar link de pago";
-  }
+if(pago === "Mercado Pago"){
+texto += "%0A👉 Enviar alias para pago";
+}
 
-  window.open("https://wa.me/5491168049474?text=" + texto);
+window.open("https://wa.me/5491168049474?text=" + texto);
 }
 </script>
 
