@@ -13,14 +13,12 @@ body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 .hero-box {background:rgba(0,0,0,0.7);padding:40px;border-radius:15px;text-align:center;}
 .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:30px;}
 .card {background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;}
-.btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;}
+.btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;margin:3px;}
 .carrito {position:fixed;bottom:-100%;width:100%;background:orange;padding:20px;color:black;transition:0.4s;max-height:80vh;overflow:auto;}
 .carrito.activo {bottom:0;}
 #btnCarrito {position:fixed;bottom:20px;left:20px;background:orange;padding:15px;border:none;border-radius:50px;font-weight:bold;}
 input,select {width:100%;padding:8px;margin:5px 0;}
 .mapa {padding:30px;text-align:center;background:#1a1a1a;}
-.redes {text-align:center;padding:30px;background:#111;}
-.redes i {font-size:40px;margin:15px;}
 .footer {text-align:center;padding:20px;background:black;}
 .whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
 </style>
@@ -36,30 +34,10 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 </section>
 
 <div class="grid">
-
-<div class="card">
-<h3>🍲 Estofado</h3>
-<select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
-<p>$8000</p>
-<button class="btn" onclick="agregar('Estofado + ' + g1.value,8000)">Agregar</button>
-</div>
-
-<div class="card">
-<h3>🍝 Albóndigas</h3>
-<select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
-<p>$8000</p>
-<button class="btn" onclick="agregar('Albondigas + ' + g2.value,8000)">Agregar</button>
-</div>
-
+<div class="card"><h3>🍲 Estofado</h3><p>$8000</p><button class="btn" onclick="agregar('Estofado',8000)">Agregar</button></div>
+<div class="card"><h3>🍝 Albóndigas</h3><p>$8000</p><button class="btn" onclick="agregar('Albondigas',8000)">Agregar</button></div>
 <div class="card"><h3>🍲 Guiso lentejas</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso lentejas',8000)">Agregar</button></div>
-<div class="card"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
-
-<div class="card"><h3>🍽 Milanesa napolitana XL</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana XL',21000)">Agregar</button></div>
-
-<div class="card"><h3>🥪 Sandwich milanesa XL</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
-
-<div class="card"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
-
+<div class="card"><h3>🍽 Milanesa napolitana</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
 </div>
 
 <div class="mapa">
@@ -69,7 +47,6 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 
 <div class="footer">
 <p>📍 GRAHAMBELL 2089 ESQUINA DEAN FUNES</p>
-<p>PASO DEL REY - MORENO</p>
 <p>📞 1168049474</p>
 </div>
 
@@ -81,17 +58,16 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <button class="btn" onclick="toggleCarrito()">Cerrar</button>
 <h3>🛒 Pedido</h3>
 <div id="lista"></div>
-
 <p>Total: $<span id="total">0</span></p>
 
 <select id="entrega">
-<option value="">Seleccionar entrega</option>
+<option value="">Entrega</option>
 <option>Retiro en local</option>
 <option>Delivery</option>
 </select>
 
 <select id="pago">
-<option value="">Forma de pago</option>
+<option value="">Pago</option>
 <option>Efectivo</option>
 <option>Mercado Pago</option>
 </select>
@@ -107,8 +83,6 @@ input,select {width:100%;padding:8px;margin:5px 0;}
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<audio id="sonidoAgregar" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
-
 <script>
 let carrito = [];
 
@@ -120,10 +94,23 @@ function agregar(nombre, precio){
 let item = carrito.find(p => p.nombre === nombre);
 if(item){ item.cantidad++; }
 else { carrito.push({nombre,precio,cantidad:1}); }
-
 render();
-document.getElementById("sonidoAgregar").play();
-document.querySelector(".carrito").classList.add("activo");
+}
+
+function cambiarCantidad(nombre, cambio){
+let item = carrito.find(p => p.nombre === nombre);
+if(item){
+item.cantidad += cambio;
+if(item.cantidad <= 0){
+carrito = carrito.filter(p => p.nombre !== nombre);
+}
+}
+render();
+}
+
+function eliminar(nombre){
+carrito = carrito.filter(p => p.nombre !== nombre);
+render();
 }
 
 function render(){
@@ -137,7 +124,12 @@ let sub = p.precio * p.cantidad;
 total += sub;
 cantidad += p.cantidad;
 
-lista.innerHTML += `${p.nombre} x${p.cantidad} - $${sub}<br>`;
+lista.innerHTML += `
+${p.nombre} x${p.cantidad} - $${sub}
+<button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
+<button onclick="cambiarCantidad('${p.nombre}',-1)">➖</button>
+<button onclick="eliminar('${p.nombre}')">❌</button>
+<br>`;
 });
 
 document.getElementById("total").innerText = total;
@@ -148,7 +140,7 @@ document.getElementById("cantidad").innerText = cantidad;
 function enviar(){
 
 if(carrito.length === 0){
-alert("Agregá productos al carrito");
+alert("Agregá productos");
 return;
 }
 
@@ -158,62 +150,22 @@ let zona = document.getElementById("zona").value.trim();
 let entrega = document.getElementById("entrega").value;
 let pago = document.getElementById("pago").value;
 
-if(nombre === ""){ alert("Falta nombre"); return; }
-if(entrega === ""){ alert("Seleccioná entrega"); return; }
-if(pago === ""){ alert("Seleccioná forma de pago"); return; }
+if(nombre===""){alert("Falta nombre");return;}
+if(entrega===""){alert("Elegí entrega");return;}
+if(pago===""){alert("Elegí pago");return;}
+if(entrega==="Delivery" && direccion===""){alert("Falta dirección");return;}
 
-if(entrega === "Delivery"){
-if(direccion === ""){ alert("Falta dirección"); return; }
-if(zona === ""){ alert("Falta zona"); return; }
-}
-
-let pedidoID = Math.floor(Math.random()*9000)+1000;
-let ahora = new Date();
-let total = 0;
-
-let texto = `🧾 TICKET DE PEDIDO
-━━━━━━━━━━━━━━━
-📍 Rotisería El Rincón del Sabor
-🆔 Pedido #${pedidoID}
-📅 ${ahora.toLocaleDateString()} ⏰ ${ahora.toLocaleTimeString()}
-━━━━━━━━━━━━━━━
-
-`;
+let texto = "Pedido:%0A";
 
 carrito.forEach(p=>{
-let sub = p.precio * p.cantidad;
-total += sub;
-texto += `🍽 ${p.nombre}
-x${p.cantidad} - $${sub}
-
-`;
+texto += `${p.nombre} x${p.cantidad}%0A`;
 });
 
-texto += `━━━━━━━━━━━━━━━
-👤 ${nombre}
-📦 ${entrega}
-`;
-
-if(entrega === "Delivery"){
-texto += `📍 ${direccion}
-📌 ${zona}
-🚚 Delivery: $1000 a $2000
-`;
-}
-
-texto += `💳 ${pago}
-
-💰 Total estimado: $${total}
-⚠️ Puede variar por delivery
-
-⚠️ Pedido automático - No modificar`;
-
-if(pago === "Mercado Pago"){
-texto += "\n👉 Solicito alias";
-}
+texto += `%0ACliente: ${nombre}%0A`;
+texto += `Entrega: ${entrega}%0A`;
+texto += `Pago: ${pago}%0A`;
 
 let url = "https://wa.me/5491168049474?text=" + encodeURIComponent(texto);
-
 window.open(url);
 }
 </script>
