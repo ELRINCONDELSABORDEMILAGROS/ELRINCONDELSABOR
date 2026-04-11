@@ -9,59 +9,20 @@
 
 <style>
 body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
-
-.hero {
-background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
-height:90vh;display:flex;align-items:center;justify-content:center;
-}
-
-.hero-box {
-background:rgba(0,0,0,0.7);
-padding:40px;border-radius:15px;text-align:center;
-}
-
-.grid {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;padding:30px;
-}
-
-.card {
-background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;
-}
-
-.btn {
-background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;
-}
-
-.carrito {
-position:fixed;bottom:-100%;width:100%;
-background:orange;padding:20px;color:black;
-transition:0.4s;max-height:80vh;overflow:auto;
-}
-
+.hero {background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;height:90vh;display:flex;align-items:center;justify-content:center;}
+.hero-box {background:rgba(0,0,0,0.7);padding:40px;border-radius:15px;text-align:center;}
+.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:30px;}
+.card {background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;}
+.btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;}
+.carrito {position:fixed;bottom:-100%;width:100%;background:orange;padding:20px;color:black;transition:0.4s;max-height:80vh;overflow:auto;}
 .carrito.activo {bottom:0;}
-
-#btnCarrito {
-position:fixed;bottom:20px;left:20px;
-background:orange;padding:15px;border:none;border-radius:50px;font-weight:bold;
-}
-
+#btnCarrito {position:fixed;bottom:20px;left:20px;background:orange;padding:15px;border:none;border-radius:50px;font-weight:bold;}
 input,select {width:100%;padding:8px;margin:5px 0;}
-
 .mapa {padding:30px;text-align:center;background:#1a1a1a;}
-
 .redes {text-align:center;padding:30px;background:#111;}
-
 .redes i {font-size:40px;margin:15px;}
-
 .footer {text-align:center;padding:20px;background:black;}
-
-.whatsapp {
-position:fixed;bottom:100px;right:20px;
-background:#25d366;padding:15px;border-radius:50%;
-color:white;font-size:28px;text-decoration:none;
-}
+.whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
 </style>
 </head>
 
@@ -99,32 +60,11 @@ color:white;font-size:28px;text-decoration:none;
 
 <div class="card"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
 
-<div class="card"><h3>🥔 Tortilla simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla simple',8000)">Agregar</button></div>
-<div class="card"><h3>🥔 Tortilla napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla napolitana',9000)">Agregar</button></div>
-<div class="card"><h3>🥔 Tortilla jamón y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla jamon queso',9000)">Agregar</button></div>
-
-<div class="card"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
-
-<div class="card"><h3>🍗 Pollo con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
-
-<div class="card"><h3>🥪 Sandwich milanesa (1 persona)</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa simple',8000)">Agregar</button></div>
-
 </div>
 
 <div class="mapa">
 <h2 style="color:gold;">📍 Ubicación</h2>
 <iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300"></iframe>
-</div>
-
-<div class="redes">
-<h2 style="color:gold;">📲 Seguinos</h2>
-<a href="https://facebook.com/elrincondelsabordemilagros" target="_blank">
-<i class="fa-brands fa-facebook" style="color:#1877f2;"></i>
-</a>
-<a href="https://instagram.com/elrincondelsabordemilagros" target="_blank">
-<i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
-</a>
-<p>Seguinos para ver promos 🔥</p>
 </div>
 
 <div class="footer">
@@ -141,14 +81,17 @@ color:white;font-size:28px;text-decoration:none;
 <button class="btn" onclick="toggleCarrito()">Cerrar</button>
 <h3>🛒 Pedido</h3>
 <div id="lista"></div>
+
 <p>Total: $<span id="total">0</span></p>
 
 <select id="entrega">
+<option value="">Seleccionar entrega</option>
 <option>Retiro en local</option>
 <option>Delivery</option>
 </select>
 
 <select id="pago">
+<option value="">Forma de pago</option>
 <option>Efectivo</option>
 <option>Mercado Pago</option>
 </select>
@@ -183,20 +126,6 @@ document.getElementById("sonidoAgregar").play();
 document.querySelector(".carrito").classList.add("activo");
 }
 
-function eliminar(nombre){
-carrito = carrito.filter(p => p.nombre !== nombre);
-render();
-}
-
-function cambiarCantidad(nombre, cambio){
-let item = carrito.find(p => p.nombre === nombre);
-if(item){
-item.cantidad += cambio;
-if(item.cantidad <= 0) eliminar(nombre);
-}
-render();
-}
-
 function render(){
 let lista = document.getElementById("lista");
 let total = 0;
@@ -208,11 +137,7 @@ let sub = p.precio * p.cantidad;
 total += sub;
 cantidad += p.cantidad;
 
-lista.innerHTML += `
-${p.nombre} x${p.cantidad} - $${sub}
-<button onclick="cambiarCantidad('${p.nombre}',1)">+</button>
-<button onclick="cambiarCantidad('${p.nombre}',-1)">-</button>
-<button onclick="eliminar('${p.nombre}')">❌</button><br>`;
+lista.innerHTML += `${p.nombre} x${p.cantidad} - $${sub}<br>`;
 });
 
 document.getElementById("total").innerText = total;
@@ -221,64 +146,75 @@ document.getElementById("cantidad").innerText = cantidad;
 }
 
 function enviar(){
-let nombre = document.getElementById("nombre").value;
-let direccion = document.getElementById("direccion").value;
-let zona = document.getElementById("zona").value;
+
+if(carrito.length === 0){
+alert("Agregá productos al carrito");
+return;
+}
+
+let nombre = document.getElementById("nombre").value.trim();
+let direccion = document.getElementById("direccion").value.trim();
+let zona = document.getElementById("zona").value.trim();
 let entrega = document.getElementById("entrega").value;
 let pago = document.getElementById("pago").value;
 
-if(nombre === ""){
-alert("Poné tu nombre");
-return;
+if(nombre === ""){ alert("Falta nombre"); return; }
+if(entrega === ""){ alert("Seleccioná entrega"); return; }
+if(pago === ""){ alert("Seleccioná forma de pago"); return; }
+
+if(entrega === "Delivery"){
+if(direccion === ""){ alert("Falta dirección"); return; }
+if(zona === ""){ alert("Falta zona"); return; }
 }
 
 let pedidoID = Math.floor(Math.random()*9000)+1000;
 let ahora = new Date();
-
-let fecha = ahora.toLocaleDateString();
-let hora = ahora.toLocaleTimeString();
-
 let total = 0;
 
-let texto = "🧾 *TICKET DE PEDIDO*%0A";
-texto += "━━━━━━━━━━━━━━━%0A";
-texto += "📍 Rotisería El Rincón del Sabor%0A";
-texto += "🆔 Pedido #" + pedidoID + "%0A";
-texto += "📅 " + fecha + " ⏰ " + hora + "%0A";
-texto += "━━━━━━━━━━━━━━━%0A%0A";
+let texto = `🧾 TICKET DE PEDIDO
+━━━━━━━━━━━━━━━
+📍 Rotisería El Rincón del Sabor
+🆔 Pedido #${pedidoID}
+📅 ${ahora.toLocaleDateString()} ⏰ ${ahora.toLocaleTimeString()}
+━━━━━━━━━━━━━━━
+
+`;
 
 carrito.forEach(p=>{
 let sub = p.precio * p.cantidad;
 total += sub;
-texto += `🍽 ${p.nombre}%0A   x${p.cantidad}  $${sub}%0A`;
+texto += `🍽 ${p.nombre}
+x${p.cantidad} - $${sub}
+
+`;
 });
 
-texto += "%0A━━━━━━━━━━━━━━━%0A";
-texto += "👤 Cliente: " + nombre + "%0A";
-texto += "📦 Entrega: " + entrega + "%0A";
+texto += `━━━━━━━━━━━━━━━
+👤 ${nombre}
+📦 ${entrega}
+`;
 
 if(entrega === "Delivery"){
-texto += "📍 Dirección: " + direccion + "%0A";
-texto += "📌 Zona: " + zona + "%0A";
-texto += "🚚 Delivery: $1000 a $2000 (según distancia)%0A";
-} else {
-texto += "🏪 Retira en el local%0A";
+texto += `📍 ${direccion}
+📌 ${zona}
+🚚 Delivery: $1000 a $2000
+`;
 }
 
-texto += "💳 Pago: " + pago + "%0A";
+texto += `💳 ${pago}
 
-texto += "━━━━━━━━━━━━━━━%0A";
-texto += "💰 TOTAL ESTIMADO: $" + total + "%0A";
-texto += "⚠️ Puede variar por delivery%0A";
-texto += "━━━━━━━━━━━━━━━%0A";
+💰 Total estimado: $${total}
+⚠️ Puede variar por delivery
 
-texto += "%0A⚠️ Pedido automático - No modificar%0A";
+⚠️ Pedido automático - No modificar`;
 
 if(pago === "Mercado Pago"){
-texto += "%0A👉 Solicita alias para pago";
+texto += "\n👉 Solicito alias";
 }
 
-window.open("https://wa.me/5491168049474?text=" + texto);
+let url = "https://wa.me/5491168049474?text=" + encodeURIComponent(texto);
+
+window.open(url);
 }
 </script>
 
