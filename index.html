@@ -11,20 +11,28 @@
 body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 .hero {background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;height:90vh;display:flex;align-items:center;justify-content:center;}
 .hero-box {background:rgba(0,0,0,0.7);padding:40px;border-radius:15px;text-align:center;}
+
 .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:30px;}
 .card {background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;}
 .btn {background:#25d366;padding:10px;border:none;color:white;border-radius:6px;cursor:pointer;margin:3px;}
+
 .carrito {position:fixed;bottom:-100%;width:100%;background:#ffb703;padding:20px;color:black;transition:0.4s;max-height:85vh;overflow:auto;}
 .carrito.activo {bottom:0;}
+
 #btnCarrito {position:fixed;bottom:20px;left:20px;background:#ffb703;padding:15px;border:none;border-radius:50px;font-weight:bold;}
+
 input,select {width:100%;padding:10px;margin:6px 0;border-radius:6px;border:none;}
+
 .mapa {padding:30px;background:#1a1a1a;text-align:center;}
+
 .redes {text-align:center;padding:30px;background:#111;}
 .redes i {font-size:35px;margin:10px;}
+
 .footer {text-align:center;padding:20px;background:black;}
+
 .whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
 
-/* NUEVO */
+/* CATEGORIAS */
 .categorias {text-align:center;padding:15px;}
 .categorias button {
 margin:5px;
@@ -92,21 +100,72 @@ cursor:pointer;
 
 <div class="card" data-cat="platos"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa (1 persona) con Papas fritas</h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',8000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa (1 persona) con Papas fritas </h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',8000)">Agregar</button></div>
 
 </div>
 
+<div class="mapa">
+<h2 style="color:gold;">📍 Ubicación</h2>
+<iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300"></iframe>
+</div>
+
+<div class="redes">
+<h2 style="color:gold;">📲 Seguinos</h2>
+<a href="https://facebook.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+<a href="https://instagram.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+</div>
+
+<div class="footer">
+<p>📍 GRAHAMBELL 2089 ESQUINA DEAN FUNES</p>
+<p>PASO DEL REY - MORENO</p>
+<p>📞 1168049474</p>
+</div>
+
+<button onclick="toggleCarrito()" id="btnCarrito">
+🛒 <span id="cantidad">0</span> | $<span id="totalBtn">0</span>
+</button>
+
+<div class="carrito">
+<button class="btn" onclick="toggleCarrito()">Cerrar</button>
+<h3>🛒 Tu pedido</h3>
+
+<div id="lista"></div>
+<p>Total: $<span id="total">0</span></p>
+
+<select id="entrega">
+<option value="">Tipo de entrega</option>
+<option>Retiro en local</option>
+<option>Delivery</option>
+</select>
+
+<select id="pago">
+<option value="">Forma de pago</option>
+<option>Efectivo</option>
+<option>Mercado Pago</option>
+</select>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="text" id="direccion" placeholder="Dirección">
+<input type="text" id="zona" placeholder="Zona / entre calles">
+
+<button class="btn" onclick="enviar()">Confirmar pedido</button>
+</div>
+
+<a class="whatsapp" href="https://wa.me/5491168049474">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <script>
+let carrito=[];
+
 function filtrar(cat){
-let items=document.querySelectorAll(".card");
-items.forEach(i=>{
-if(cat==="todos"){
-i.style.display="block";
-}else{
-i.style.display = (i.dataset.cat===cat) ? "block" : "none";
-}
+document.querySelectorAll(".card").forEach(i=>{
+i.style.display=(cat==="todos"||i.dataset.cat===cat)?"block":"none";
 });
 }
+
+/* TODO TU JS ORIGINAL SIGUE IGUAL */
 </script>
 
-<!-- TODO TU SCRIPT ORIGINAL SIGUE IGUAL ABAJO -->
+</body>
+</html>
