@@ -24,15 +24,12 @@ body {margin:0;font-family:Arial;background:#0f0f0f;color:white;}
 input,select {width:100%;padding:10px;margin:6px 0;border-radius:6px;border:none;}
 
 .mapa {padding:30px;background:#1a1a1a;text-align:center;}
-
 .redes {text-align:center;padding:30px;background:#111;}
 .redes i {font-size:35px;margin:10px;}
-
 .footer {text-align:center;padding:20px;background:black;}
 
 .whatsapp {position:fixed;bottom:100px;right:20px;background:#25d366;padding:15px;border-radius:50%;color:white;font-size:28px;text-decoration:none;}
 
-/* CATEGORIAS */
 .categorias {text-align:center;padding:15px;}
 .categorias button {
 margin:5px;
@@ -56,7 +53,6 @@ cursor:pointer;
 </div>
 </section>
 
-<!-- CATEGORIAS -->
 <div class="categorias">
 <button onclick="filtrar('todos')">🍽 Todos</button>
 <button onclick="filtrar('platos')">🍲 Platos</button>
@@ -84,41 +80,14 @@ cursor:pointer;
 
 <div class="card" data-cat="platos"><h3>🍲 Guiso carrero</h3><p>$8000</p><button class="btn" onclick="agregar('Guiso carrero',8000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🍽 Milanesa Napolitana XL(2 personas)</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🍽 Milanesa Napolitana XL</h3><p>$21000</p><button class="btn" onclick="agregar('Milanesa napolitana',21000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa XL(2 personas)</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL para 2 personas',14000)">Agregar</button></div>
+<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa XL</h3><p>$14000</p><button class="btn" onclick="agregar('Sandwich milanesa XL',14000)">Agregar</button></div>
 
 <div class="card" data-cat="otros"><h3>🍔 Hamburguesa + papas</h3><p>$6000</p><button class="btn" onclick="agregar('Hamburguesa',6000)">Agregar</button></div>
 
-<div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana simple</h3><p>$8000</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',8000)">Agregar</button></div>
-
-<div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana napolitana</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana napolitana',9000)">Agregar</button></div>
-
-<div class="card" data-cat="otros"><h3>🥔 Tortilla de papa mediana jamón y queso</h3><p>$9000</p><button class="btn" onclick="agregar('Tortilla de papa mediana jamon queso',9000)">Agregar</button></div>
-
 <div class="card" data-cat="pizzas"><h3>🍕 Pizza jamón y morrón</h3><p>$18000</p><button class="btn" onclick="agregar('Pizza jamon y morron',18000)">Agregar</button></div>
 
-<div class="card" data-cat="platos"><h3>🍗 Pollo 1/4 con papas</h3><p>$9000</p><button class="btn" onclick="agregar('Pollo con papas',9000)">Agregar</button></div>
-
-<div class="card" data-cat="platos"><h3>🥪 Sandwich milanesa (1 persona) con Papas fritas </h3><p>$8000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',8000)">Agregar</button></div>
-
-</div>
-
-<div class="mapa">
-<h2 style="color:gold;">📍 Ubicación</h2>
-<iframe src="https://www.google.com/maps?q=Grahambell+2089+Moreno&output=embed" width="100%" height="300"></iframe>
-</div>
-
-<div class="redes">
-<h2 style="color:gold;">📲 Seguinos</h2>
-<a href="https://facebook.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-<a href="https://instagram.com/elrincondelsabordemilagros" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-</div>
-
-<div class="footer">
-<p>📍 GRAHAMBELL 2089 ESQUINA DEAN FUNES</p>
-<p>PASO DEL REY - MORENO</p>
-<p>📞 1168049474</p>
 </div>
 
 <button onclick="toggleCarrito()" id="btnCarrito">
@@ -128,7 +97,6 @@ cursor:pointer;
 <div class="carrito">
 <button class="btn" onclick="toggleCarrito()">Cerrar</button>
 <h3>🛒 Tu pedido</h3>
-
 <div id="lista"></div>
 <p>Total: $<span id="total">0</span></p>
 
@@ -164,7 +132,87 @@ i.style.display=(cat==="todos"||i.dataset.cat===cat)?"block":"none";
 });
 }
 
-/* TODO TU JS ORIGINAL SIGUE IGUAL */
+function toggleCarrito(){
+document.querySelector(".carrito").classList.toggle("activo");
+}
+
+function agregar(nombre,precio){
+let item=carrito.find(p=>p.nombre===nombre);
+if(item){item.cantidad++;}else{carrito.push({nombre,precio,cantidad:1});}
+render();
+}
+
+function cambiarCantidad(nombre,cambio){
+let item=carrito.find(p=>p.nombre===nombre);
+if(item){
+item.cantidad+=cambio;
+if(item.cantidad<=0){carrito=carrito.filter(p=>p.nombre!==nombre);}
+}
+render();
+}
+
+function eliminar(nombre){
+carrito=carrito.filter(p=>p.nombre!==nombre);
+render();
+}
+
+function render(){
+let lista=document.getElementById("lista");
+let total=0;
+let cantidad=0;
+
+lista.innerHTML="";
+
+carrito.forEach(p=>{
+let sub=p.precio*p.cantidad;
+total+=sub;
+cantidad+=p.cantidad;
+
+lista.innerHTML+=`
+${p.nombre} x${p.cantidad} - $${sub}
+<button onclick="cambiarCantidad('${p.nombre}',1)">➕</button>
+<button onclick="cambiarCantidad('${p.nombre}',-1)">➖</button>
+<button onclick="eliminar('${p.nombre}')">❌</button><br>`;
+});
+
+document.getElementById("total").innerText=total;
+document.getElementById("totalBtn").innerText=total;
+document.getElementById("cantidad").innerText=cantidad;
+}
+
+function enviar(){
+
+if(carrito.length===0){alert("Agregá productos");return;}
+
+let nombre=document.getElementById("nombre").value.trim();
+let direccion=document.getElementById("direccion").value.trim();
+let zona=document.getElementById("zona").value.trim();
+let entrega=document.getElementById("entrega").value;
+let pago=document.getElementById("pago").value;
+
+if(!nombre||!entrega||!pago){alert("Completá los datos");return;}
+if(entrega==="Delivery" && (!direccion||!zona)){alert("Falta dirección/zona");return;}
+
+let total=0;
+let texto=`👋 Hola Rotisería El Rincón del Sabor de Milagros, quiero hacer un pedido:\n\n🧾 TICKET\n`;
+
+carrito.forEach(p=>{
+let sub=p.precio*p.cantidad;
+total+=sub;
+texto+=`🍽 ${p.nombre} x${p.cantidad} - $${sub}\n`;
+});
+
+texto+=`\n👤 ${nombre}\n📦 ${entrega}\n`;
+
+if(entrega==="Delivery"){
+texto+=`📍 ${direccion}\n📌 ${zona}\n🚚 Delivery aprox\n`;
+}
+
+texto+=`💳 ${pago}\n💰 Total estimado: $${total}`;
+
+let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
+window.open(url);
+}
 </script>
 
 </body>
