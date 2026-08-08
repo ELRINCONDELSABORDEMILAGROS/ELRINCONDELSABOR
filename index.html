@@ -15,6 +15,40 @@
     border-radius:10px;
     display:block;
     margin:0 auto 10px;}
+  .estado-local{
+    text-align:center;
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.abierto{
+    background:#1b5e20;
+    color:white;
+}
+
+.cerrado{
+    background:#b71c1c;
+    color:white;
+}
+
+.horarios{
+    background:#1a1a1a;
+    padding:25px;
+    margin:20px 30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.horarios h2{
+    color:#ffb703;
+    margin-top:0;
+}
+
+.horarios p{
+    margin:8px 0;
+    font-size:16px;
+}
 body {
   margin:0;
   font-family:Arial;
@@ -148,6 +182,20 @@ input,select {
 <p>Comida casera • Delivery con cargo • Take Away</p>
 </div>
 </section>
+
+<div id="estadoLocal" class="estado-local"></div>
+
+<div class="horarios">
+    <h2>🕐 Horarios de atención</h2>
+
+    <p><strong>Lunes:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
+    <p><strong>Martes:</strong> 11:00 a 15:00 | Noche cerrado</p>
+    <p><strong>Miércoles:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
+    <p><strong>Jueves:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
+    <p><strong>Viernes:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
+    <p><strong>Sábado:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
+    <p><strong>Domingo:</strong> 20:00 a 23:00 | Mediodía cerrado</p>
+</div>
 
 <div class="grid">
 
@@ -361,6 +409,114 @@ texto+=`
 let url="https://wa.me/5491168049474?text="+encodeURIComponent(texto);
 window.open(url);
 }
+function actualizarEstado(){
+
+    const ahora = new Date();
+
+    const dia = ahora.getDay();
+    const hora = ahora.getHours();
+    const minutos = ahora.getMinutes();
+
+    const horaActual = hora * 60 + minutos;
+
+    let abierto = false;
+
+    /*
+    Lunes = 1
+    Martes = 2
+    Miércoles = 3
+    Jueves = 4
+    Viernes = 5
+    Sábado = 6
+    Domingo = 0
+    */
+
+    // LUNES
+    if(dia === 1){
+        if(
+            (horaActual >= 660 && horaActual < 900) ||
+            (horaActual >= 1200 && horaActual < 1380)
+        ){
+            abierto = true;
+        }
+    }
+
+    // MARTES
+    if(dia === 2){
+        if(horaActual >= 660 && horaActual < 900){
+            abierto = true;
+        }
+    }
+
+    // MIÉRCOLES
+    if(dia === 3){
+        if(
+            (horaActual >= 660 && horaActual < 900) ||
+            (horaActual >= 1200 && horaActual < 1380)
+        ){
+            abierto = true;
+        }
+    }
+
+    // JUEVES
+    if(dia === 4){
+        if(
+            (horaActual >= 660 && horaActual < 900) ||
+            (horaActual >= 1200 && horaActual < 1380)
+        ){
+            abierto = true;
+        }
+    }
+
+    // VIERNES
+    if(dia === 5){
+        if(
+            (horaActual >= 660 && horaActual < 900) ||
+            (horaActual >= 1200 && horaActual < 1380)
+        ){
+            abierto = true;
+        }
+    }
+
+    // SÁBADO
+    if(dia === 6){
+        if(
+            (horaActual >= 660 && horaActual < 900) ||
+            (horaActual >= 1200 && horaActual < 1380)
+        ){
+            abierto = true;
+        }
+    }
+
+    // DOMINGO
+    if(dia === 0){
+        if(horaActual >= 1200 && horaActual < 1380){
+            abierto = true;
+        }
+    }
+
+    const estado = document.getElementById("estadoLocal");
+
+    if(abierto){
+
+        estado.className = "estado-local abierto";
+
+        estado.innerHTML =
+        "🟢 ABIERTO — ¡Estamos tomando pedidos!";
+
+    }else{
+
+        estado.className = "estado-local cerrado";
+
+        estado.innerHTML =
+        "🔴 CERRADO — En este momento no estamos tomando pedidos";
+
+    }
+}
+
+actualizarEstado();
+
+setInterval(actualizarEstado, 60000);
 </script>
 
 </body>
