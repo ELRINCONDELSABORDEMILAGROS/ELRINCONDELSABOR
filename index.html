@@ -595,43 +595,40 @@ function actualizarEstado(){
         "🔴 CERRADO — En este momento no estamos tomando pedidos";
 
     }
-}
+
 
 actualizarEstado();
 
 setInterval(actualizarEstado, 60000);
+
 function filtrarCategoria(categoria, boton){
 
-    const productos = document.querySelectorAll(".card");
+    const productos = document.querySelectorAll(".grid .card");
 
     const botones = document.querySelectorAll(".categoria-btn");
 
-    // Quitar categoría activa
-    botones.forEach(btn => {
+    // Quitar selección de todos los botones
+    botones.forEach(function(btn){
         btn.classList.remove("activa");
     });
 
-    // Marcar botón seleccionado
+    // Marcar el botón que tocaste
     boton.classList.add("activa");
 
-    // Mostrar / ocultar productos
-    productos.forEach(producto => {
+    // Mostrar u ocultar productos
+    productos.forEach(function(producto){
 
         if(categoria === "todos"){
 
             producto.style.display = "";
 
-        }else{
+        } else if(producto.dataset.categoria === categoria){
 
-            if(producto.dataset.categoria === categoria){
+            producto.style.display = "";
 
-                producto.style.display = "";
+        } else {
 
-            }else{
-
-                producto.style.display = "none";
-
-            }
+            producto.style.display = "none";
 
         }
 
