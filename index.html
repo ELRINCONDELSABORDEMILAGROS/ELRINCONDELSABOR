@@ -586,10 +586,17 @@ function actualizarEstado(){
 
     }
 
+} // ← ESTA LLAVE ES MUY IMPORTANTE
+
 
 actualizarEstado();
 
 setInterval(actualizarEstado, 60000);
+
+
+// ================================
+// FILTRO DE CATEGORÍAS
+// ================================
 
 function filtrarCategoria(categoria, boton){
 
@@ -612,11 +619,11 @@ function filtrarCategoria(categoria, boton){
 
             producto.style.display = "";
 
-        } else if(producto.dataset.categoria === categoria){
+        }else if(producto.dataset.categoria === categoria){
 
             producto.style.display = "";
 
-        } else {
+        }else{
 
             producto.style.display = "none";
 
