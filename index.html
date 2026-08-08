@@ -8,6 +8,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+  /* CATEGORÍAS */
+.categorias {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 15px 20px;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.categoria-btn {
+    flex: 0 0 auto;
+    background: #292929;
+    color: white;
+    border: 1px solid #444;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.categoria-btn:hover,
+.categoria-btn.activa {
+    background: #ffb703;
+    color: black;
+}
   .foto-comida{
     width:90px;
     height:90px;
@@ -196,10 +224,51 @@ input,select {
     <p><strong>Sábado:</strong> 11:00 a 15:00 | 20:00 a 23:00</p>
     <p><strong>Domingo:</strong> 20:00 a 23:00 | Mediodía cerrado</p>
 </div>
+<!-- CATEGORÍAS -->
+
+<div class="categorias">
+
+    <button class="categoria-btn activa" onclick="filtrarCategoria('todos', this)">
+        🍽️ Todos
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('promos', this)">
+        🔥 Promos del día
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('olla', this)">
+        🍲 Comidas de olla
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('sandwich', this)">
+        🥪 Sandwich de milanesa
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('hamburguesas', this)">
+        🍔 Hamburguesas
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('empanadas', this)">
+        🥟 Empanadas
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('minutas', this)">
+        🍽️ Minutas
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarCategoria('bebidas', this)">
+        🥤 Bebidas
+    </button>
+  <button class="categoria-btn" onclick="filtrarCategoria('pizzas', this)">
+        🥤 Pizzas caseras
+    </button>
+
+</div>
 
 <div class="grid">
+<div class="grid">
 
-<div class="card">
+<div class="card" data-categoria="olla">
 <img src="ESTOFADO DE CARNE CON GUARNICION.jpeg" class="foto-comida" alt="Estofado de carne con guarnicion">
 <h3>Estofado de carne con guarnición</h3>
 <select id="g1"><option>Arroz</option><option>Fideos</option><option>Ravioles</option></select>
@@ -207,7 +276,7 @@ input,select {
 <button class="btn" onclick="agregar('Estofado de carne + '+g1.value,9000)">Agregar</button>
 </div>
 
-<div class="card">
+<div class="card"data-categoria="olla">
 <img src="ALBONDIGAS CON GUARNICION.jpeg" class="foto-comida" alt="Albondigas con guarnicion">
 <h3> Albóndigas con guarnición</h3>
 <select id="g2"><option>Arroz</option><option>Fideos</option><option>Ravioles</option><option>Puré</option></select>
@@ -215,24 +284,24 @@ input,select {
 <button class="btn" onclick="agregar('Albondigas + '+g2.value,9000)">Agregar</button>
 </div>
 
-<div class="card"><h3>Guiso lentejas</h3><p>$9000</p><button class="btn" onclick="agregar('Guiso lentejas',9000)">Agregar</button></div>
-<div class="card"><h3>Guiso carrero</h3><p>$9000</p><button class="btn" onclick="agregar('Guiso carrero',9000)">Agregar</button></div>
+<div class="card"data-categoria="olla"><h3>Guiso lentejas</h3><p>$9000</p><button class="btn" onclick="agregar('Guiso lentejas',9000)">Agregar</button></div>
+<div class="card" data-categoria="olla"><h3>Guiso carrero</h3><p>$9000</p><button class="btn" onclick="agregar('Guiso carrero',9000)">Agregar</button></div>
 
-<div class="card"><h3>Milanesa Napolitana XL (2 personas)</h3><p>$24000</p><button class="btn" onclick="agregar('Milanesa napolitana',24000)">Agregar</button></div>
+<div class="card"data-categoria="minutas"><h3>Milanesa Napolitana XL (2 personas)</h3><p>$24000</p><button class="btn" onclick="agregar('Milanesa napolitana',24000)">Agregar</button></div>
 
-<div class="card"><h3>Sandwich milanesa XL (2 personas)</h3><p>$17000</p><button class="btn" onclick="agregar('Sandwich milanesa XL para 2 personas',17000)">Agregar</button></div>
+<div class="card" data-categoria="sandwich"><h3>Sandwich milanesa XL (2 personas)</h3><p>$17000</p><button class="btn" onclick="agregar('Sandwich milanesa XL para 2 personas',17000)">Agregar</button></div>
 
-<div class="card"><h3> Hamburguesa + papas</h3><p>$7000</p><button class="btn" onclick="agregar('Hamburguesa',7000)">Agregar</button></div>
+<div class="card" data-categoria="hamburguesas"><h3> Hamburguesa + papas</h3><p>$7000</p><button class="btn" onclick="agregar('Hamburguesa',7000)">Agregar</button></div>
 
-<div class="card"><h3>Tortilla de papa mediana simple</h3><p>$9500</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',9500)">Agregar</button></div>
-<div class="card"><h3> Tortilla de papa mediana napolitana</h3><p>$10000</p><button class="btn" onclick="agregar('Tortilla de papa mediana napolitana',10000)">Agregar</button></div>
-<div class="card"><h3> Tortilla de papa mediana jamón y queso</h3><p>$10000</p><button class="btn" onclick="agregar('Tortilla de papa mediana jamon queso',10000)">Agregar</button></div>
+<div class="card"data-categoria="minutas"><h3>Tortilla de papa mediana simple</h3><p>$9500</p><button class="btn" onclick="agregar('Tortilla de papa mediana simple',9500)">Agregar</button></div>
+<div class="card" data-categoria="minutas"><h3> Tortilla de papa mediana napolitana</h3><p>$10000</p><button class="btn" onclick="agregar('Tortilla de papa mediana napolitana',10000)">Agregar</button></div>
+<div class="card"data-categoria="minutas"><h3> Tortilla de papa mediana jamón y queso</h3><p>$10000</p><button class="btn" onclick="agregar('Tortilla de papa mediana jamon queso',10000)">Agregar</button></div>
 
-<div class="card"><h3> Pizza jamón y morrón</h3><p>$19000</p><button class="btn" onclick="agregar('Pizza jamon y morron',19000)">Agregar</button></div>
+<div class="card"data-categoria="pizzas"><h3> Pizza jamón y morrón</h3><p>$19000</p><button class="btn" onclick="agregar('Pizza jamon y morron',19000)">Agregar</button></div>
 
-<div class="card"><h3> Pollo 1/4 con papas</h3><p>$10000</p><button class="btn" onclick="agregar('Pollo con papas',10000)">Agregar</button></div>
+<div class="card"data-categoria="minutas"><h3> Pollo 1/4 con papas</h3><p>$10000</p><button class="btn" onclick="agregar('Pollo con papas',10000)">Agregar</button></div>
 
-<div class="card"><h3> Sandwich milanesa (1 persona) con papas fritas</h3><p>$9000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',9000)">Agregar</button></div>
+<div class="card"data-categoria="sandwich"><h3> Sandwich milanesa (1 persona) con papas fritas</h3><p>$9000</p><button class="btn" onclick="agregar('Sandwich milanesa para 1 persona con papas fritas',9000)">Agregar</button></div>
 
 </div>
 
@@ -517,6 +586,44 @@ function actualizarEstado(){
 actualizarEstado();
 
 setInterval(actualizarEstado, 60000);
+function filtrarCategoria(categoria, boton){
+
+    const productos = document.querySelectorAll(".card");
+
+    const botones = document.querySelectorAll(".categoria-btn");
+
+    // Quitar categoría activa
+    botones.forEach(btn => {
+        btn.classList.remove("activa");
+    });
+
+    // Marcar botón seleccionado
+    boton.classList.add("activa");
+
+    // Mostrar / ocultar productos
+    productos.forEach(producto => {
+
+        if(categoria === "todos"){
+
+            producto.style.display = "";
+
+        }else{
+
+            if(producto.dataset.categoria === categoria){
+
+                producto.style.display = "";
+
+            }else{
+
+                producto.style.display = "none";
+
+            }
+
+        }
+
+    });
+
+}
 </script>
 
 </body>
